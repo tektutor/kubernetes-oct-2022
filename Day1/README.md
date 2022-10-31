@@ -869,7 +869,7 @@ Let's create fourth container that will act like a Load Balancer
 docker run -d --name lb --hostname lb nginx:latest
 ```
 
-We need to configure the lb container to work like a Load Balancer, let's copy the nginx.conf file from our location machine to the lb container
+We need to configure the lb container to work like a Load Balancer, let's copy the nginx.conf file from our local machine to the lb container
 ```
 cd ~/kubernetes-oct-2022
 git pull
@@ -900,4 +900,4 @@ curl 172.17.0.5
 curl 172.17.0.5:80
 ```
 
-The expected response is each time you do curl, the load balancer should redirect the call to web1, web2 and web3 in a round-robin fashion.
+The expected response is, each time you do curl, the load balancer should redirect the call to web1, web2 and web3 in a round-robin fashion.
