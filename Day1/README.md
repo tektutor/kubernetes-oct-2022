@@ -628,3 +628,20 @@ jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
 CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS        PORTS     NAMES
 eecfa4ad6752   ubuntu:16.04   "/bin/bash"   15 minutes ago   Up 1 second             c1
 </pre>
+
+## ⛹️‍♂️ Lab - Restarting a running container
+```
+docker restart c1
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$<b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS        PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04   "/bin/bash"   15 minutes ago   Up 1 second             c1
+jegan@tektutor.org:~/Desktop$ <b>docker restart c1</b>
+c1
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS         PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04   "/bin/bash"   17 minutes ago   Up 3 seconds             c1
+</pre>
