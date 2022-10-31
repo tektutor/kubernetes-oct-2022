@@ -672,7 +672,7 @@ CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS          
 578ea075c2d4   hello-world:latest   "/hello"   31 minutes ago   Exited (0) 31 minutes ago             hello-container1
 </pre>
 
-## Deleting a running container forcibly
+## ⛹️‍♂️ Lab - Deleting a running container forcibly
 ```
 docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
 docker ps 
@@ -693,7 +693,7 @@ CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS          
 578ea075c2d4   hello-world:latest   "/hello"   35 minutes ago   Exited (0) 35 minutes ago             hello-container1
 </pre>
 
-## Deleting multiple containers gracefully
+## ⛹️‍♂️ Lab - Deleting multiple containers gracefully
 ```
 docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
 docker run -dit --name c2 --hostname c2 ubuntu:16.04 /bin/bash
@@ -730,7 +730,7 @@ CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS          
 578ea075c2d4   hello-world:latest   "/hello"   38 minutes ago   Exited (0) 38 minutes ago             hello-container1
 </pre>
 
-## Deleting multiple containers gracefully without using their name
+## ⛹️‍♂️ Lab - Deleting multiple containers gracefully without using their name
 Let's create 5 containers
 ```
 docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
