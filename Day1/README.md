@@ -37,6 +37,8 @@
   - Microsoft
     - Hyper-V (Works from Windows 10 Pro onwards )
 - this type of Virtualization is called Heavy Weight 
+- each Virtual Machine represents one fully function Operating System
+- the Operating System has its own dedicated OS Kernel
 
 ## Multi Chip Module
 - Single Integrated Chip (IC) hosting multiple Processors
@@ -44,6 +46,17 @@
 - Let's assume a MCM IC hosting 8 Processors each supporting 128 Cores
   - total cores supported - 8 x 128 x 2 = 2048 cores
 
+## Linux Kernel Features
+- Supports two interesting features that enable container technology
+  1. Namespace and
+     - each container is separated from other containers as they run in a virtual sandbox environment
+     - each container gets many namespaces
+       - PID namespace
+       - Network namespace, etc
+  2. Control Group (CGroup)
+     - it is through this feature, we can restrict a container hardware resource utilization
+     - For instance, we can restrict a container using only 25% of CPU ( if the OS has let's 4 cores, the container can only use 1 core at the max )
+ 
 
 ## What is Containerization?
 - is an application virtualization technology
@@ -54,6 +67,8 @@
 - hence every container gets an IP Address
 - each container has a Network Stack (7 OSI layers)
 - each container has a file system
+- container doesn't not OS Kernel
+- each container runs in its namespace
 
 ## What are the different Container Tools available?
 
