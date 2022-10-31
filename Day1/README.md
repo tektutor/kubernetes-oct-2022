@@ -585,3 +585,25 @@ jegan@tektutor.org:~/Desktop$ <b>docker inspect -f {{.NetworkSettings.MacAddress
 02:42:ac:11:00:02
 </pre>
 
+## ⛹️‍♂️ Lab - Stopping a running container
+```
+docker ps
+docker stop c1
+docker ps 
+docker ps -a
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04   "/bin/bash"   12 minutes ago   Up 12 minutes             c1
+jegan@tektutor.org:~/Desktop$ <b>docker stop c1</b>
+c1
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE                COMMAND       CREATED          STATUS                      PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04         "/bin/bash"   12 minutes ago   Exited (0) 4 seconds ago              c1
+578ea075c2d4   hello-world:latest   "/hello"      25 minutes ago   Exited (0) 25 minutes ago             hello-container1
+</pre>
