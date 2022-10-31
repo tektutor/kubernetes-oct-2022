@@ -646,7 +646,9 @@ CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS         PORT
 eecfa4ad6752   ubuntu:16.04   "/bin/bash"   17 minutes ago   Up 3 seconds             c1
 </pre>
 
-## Deleting a running container gracefully
+## ⛹️‍♂️ Lab - Deleting a running container gracefully
+We need to stop the container before deleting it.
+
 ```
 docker stop c1
 docker rm c1
