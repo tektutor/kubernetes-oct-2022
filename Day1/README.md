@@ -84,3 +84,12 @@
 
 ## What is Docker Private Registry?
 
+
+# Docker Commands
+
+## Listing Docker Images from Local Docker Registry
+```
+docker images
+```
+
+
