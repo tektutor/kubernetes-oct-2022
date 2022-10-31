@@ -692,3 +692,40 @@ jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS                      PORTS     NAMES
 578ea075c2d4   hello-world:latest   "/hello"   35 minutes ago   Exited (0) 35 minutes ago             hello-container1
 </pre>
+
+## Deleting multiple containers gracefully
+```
+docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
+docker run -dit --name c2 --hostname c2 ubuntu:16.04 /bin/bash
+docker run -dit --name c3 --hostname c3 ubuntu:16.04 /bin/bash
+
+docker ps
+docker stop c1 c2 c3
+docker rm c1 c2 c3
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash</b>
+a02536dade46408192d2abe3562e48b34069722cf668f7a5f32f8eac6310bf30
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c2 --hostname c2 ubuntu:16.04 /bin/bash</b>
+9ff4a1c0d0a18eb31826845af46bfec144e629f0c7aa29bd2880809c5f0b6139
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c3 --hostname c3 ubuntu:16.04 /bin/bash</b>
+3bebc34f96ead4e6c998a49944920aff0a5cdb4d8026f1ef7a3e41b5c8c57b3c
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+3bebc34f96ea   ubuntu:16.04   "/bin/bash"   2 seconds ago    Up 1 second               c3
+9ff4a1c0d0a1   ubuntu:16.04   "/bin/bash"   8 seconds ago    Up 6 seconds              c2
+a02536dade46   ubuntu:16.04   "/bin/bash"   14 seconds ago   Up 12 seconds             c1
+jegan@tektutor.org:~/Desktop$ <b>docker stop c1 c2 c3</b>
+c1
+c2
+c3
+jegan@tektutor.org:~/Desktop$ <b>docker rm c1 c2 c3</b>
+c1
+c2
+c3
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS                      PORTS     NAMES
+578ea075c2d4   hello-world:latest   "/hello"   38 minutes ago   Exited (0) 38 minutes ago             hello-container1
+</pre>
