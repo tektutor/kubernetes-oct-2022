@@ -798,3 +798,27 @@ b878925bf45a
 jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 </pre>
+
+## Deleting multiple running containers forcibly
+```
+docker rm -f $(docker ps -q)
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+238f531960e1   ubuntu:16.04   "/bin/bash"   5 seconds ago    Up 4 seconds              c2
+3378e03cd477   ubuntu:16.04   "/bin/bash"   13 seconds ago   Up 12 seconds             c3
+b7474d8812f4   ubuntu:16.04   "/bin/bash"   19 seconds ago   Up 18 seconds             c4
+6e0df0420984   ubuntu:16.04   "/bin/bash"   33 seconds ago   Up 32 seconds             c5
+088142ee9614   ubuntu:16.04   "/bin/bash"   36 seconds ago   Up 35 seconds             c1
+jegan@tektutor.org:~/Desktop$ <b>docker rm -f $(docker ps -q)</b>
+238f531960e1
+3378e03cd477
+b7474d8812f4
+6e0df0420984
+088142ee9614
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</pre>
