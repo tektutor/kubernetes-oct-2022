@@ -799,7 +799,7 @@ jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 </pre>
 
-## Deleting multiple running containers forcibly
+## ⛹️‍♂️ Lab - Deleting multiple running containers forcibly
 ```
 docker rm -f $(docker ps -q)
 ```
@@ -824,7 +824,7 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 </pre>
 
 
-## Let's setup a load balancer using nginx docker image
+## ⛹️‍♂️ Lab - Let's setup a load balancer using nginx docker image
 
 Let's create 3 nginx web servers
 ```
