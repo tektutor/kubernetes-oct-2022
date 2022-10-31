@@ -26,6 +26,25 @@
 - Intel Processor
   - the virtualization features is called VT-X
   - this must be enabled on the BIOS
+- Examples
+  - VMWare
+    - VMWare Fusion (Virtualization Software that works in Mac OS-X) - Type 2
+    - VMWare Workstation ( Virtualization Software that works on Windows/Linux ) - Type 2
+    - VMWare vSphere/v-center - Type 1 Hypervisor ( Bare Metal Servers - Servers with no OS )
+  - Oracle
+    - Virtual Box (Free - works in Windows/Mac/Linux) - Type 2
+  - Parallels ( Mac OS-X)
+  - Microsoft
+    - Hyper-V (Works from Windows 10 Pro onwards )
+- this type of Virtualization is called Heavy Weight 
+
+## Multi Chip Module
+- Single Integrated Chip (IC) hosting multiple Processors
+- The MCM Chip can be installed in a Single Socket on your Server grade Motherboard
+- Let's assume a MCM IC hosting 8 Processors each supporting 128 Cores
+  - total cores supported - 8 x 128 x 2 = 2048 cores
+  - 
+
 
 ## What is Containerization?
 
