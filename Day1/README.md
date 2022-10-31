@@ -729,3 +729,72 @@ jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS                      PORTS     NAMES
 578ea075c2d4   hello-world:latest   "/hello"   38 minutes ago   Exited (0) 38 minutes ago             hello-container1
 </pre>
+
+## Deleting multiple containers gracefully without using their name
+Let's create 5 containers
+```
+docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
+docker run -dit --name c2 --hostname c2 ubuntu:16.04 /bin/bash
+docker run -dit --name c3 --hostname c3 ubuntu:16.04 /bin/bash
+docker run -dit --name c4 --hostname c4 ubuntu:16.04 /bin/bash
+docker run -dit --name c5 --hostname c5 ubuntu:16.04 /bin/bash
+```
+
+Let's list and see if the containers are running
+```
+docker ps
+```
+
+Let's stop them all and delete them
+```
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash</b>
+b878925bf45a9cb98fda8dbe86ffea6888f0367335d6ffcd2f34514b3afc552b
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c2 --hostname c2 ubuntu:16.04 /bin/bash</b>
+c6917b964a260b9eac6622e4e906e9ff52017eacf304bb5141514bc01e1dc82a
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c3 --hostname c3 ubuntu:16.04 /bin/bash</b>
+c2f0067f0c599858c0637b658af733650db125895a11eebd2e9ccc8acf920c90
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c4 --hostname c4 ubuntu:16.04 /bin/bash</b>
+7b3338a2cece09b97730d40b30b07f0d4e6e79810641ba975a0983bed713c39e
+^[[Ajegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c5 --hostname c5 ubuntu:16.04 /bin/bash</b>
+51d07ce93e33b1e889a8721a3cd34f9eb278d036db10e7c3378fbe9256c3a77f
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS              PORTS     NAMES
+51d07ce93e33   ubuntu:16.04   "/bin/bash"   2 seconds ago        Up 1 second                   c5
+7b3338a2cece   ubuntu:16.04   "/bin/bash"   8 seconds ago        Up 7 seconds                  c4
+c2f0067f0c59   ubuntu:16.04   "/bin/bash"   About a minute ago   Up About a minute             c3
+c6917b964a26   ubuntu:16.04   "/bin/bash"   About a minute ago   Up About a minute             c2
+b878925bf45a   ubuntu:16.04   "/bin/bash"   About a minute ago   Up About a minute             c1
+jegan@tektutor.org:~/Desktop$ <b>docker ps -q</b>
+51d07ce93e33
+7b3338a2cece
+c2f0067f0c59
+c6917b964a26
+b878925bf45a
+jegan@tektutor.org:~/Desktop$ <b>docker stop $(docker ps -q)</b>
+51d07ce93e33
+7b3338a2cece
+c2f0067f0c59
+c6917b964a26
+b878925bf45a
+jegan@tektutor.org:~/Desktop$ <b>docker ps -q</b>
+jegan@tektutor.org:~/Desktop$ <b>docker ps -aq</b>
+51d07ce93e33
+7b3338a2cece
+c2f0067f0c59
+c6917b964a26
+b878925bf45a
+jegan@tektutor.org:~/Desktop$ <b>docker rm $(docker ps -aq)</b>
+51d07ce93e33
+7b3338a2cece
+c2f0067f0c59
+c6917b964a26
+b878925bf45a
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</pre>
