@@ -822,3 +822,82 @@ b7474d8812f4
 jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 </pre>
+
+
+## Let's setup a load balancer using nginx docker image
+
+Let's create 3 nginx web servers
+```
+docker run -d --name web1 --hostname web1 nginx:latest
+docker run -d --name web2 --hostname web2 nginx:latest
+docker run -d --name web3 --hostname web3 nginx:latest
+```
+
+Let's modify the index.html file on web1, web2 and web3 containers
+```
+echo "Web Server 1" > index.html
+docker cp index.html web1:/usr/share/nginx/html/index.html
+
+echo "Web Server 2" > index.html
+docker cp index.html web2:/usr/share/nginx/html/index.html
+
+echo "Web Server 3" > index.html
+docker cp index.html web3:/usr/share/nginx/html/index.html
+```
+
+Let's list and see if the 3 web servers are running
+```
+docker ps
+```
+
+Find the IP address of those 3 web servers to access the web pages from those servers
+```
+docker inspect -f {{.NetworkSettings.IPAddress}} web1
+docker inspect web2 | grep IPA
+docker inspect web3 | grep IPA
+```
+
+Let's access the web page from web1, web2 and web3 servers
+```
+curl 172.17.0.2
+curl http://172.17.0.3:80
+curl 172.17.0.4:80
+```
+
+Let's create fourth container that will act like a Load Balancer
+```
+docker run -d --name lb --hostname lb nginx:latest
+```
+
+We need to configure the lb container to work like a Load Balancer, let's copy the nginx.conf file from our location machine to the lb container
+```
+cd ~/kubernetes-oct-2022
+git pull
+cd Day1
+
+docker cp nginx.conf lb:/etc/nginx/nginx.conf
+```
+
+We need to restart the lb container to apply the config changes
+```
+docker restart lb
+```
+
+Now let's check if the lb container is running after our config changes
+```
+docker ps
+```
+
+Find the IP Address of your lb container
+```
+docker inspect lb|grep IPA
+```
+
+Assuming your lb container IP is 172.17.0.5
+```
+curl http://172.17.0.5:80
+curl 172.17.0.5
+curl 172.17.0.5:80
+```
+
+The expected response is each time you do curl, the load balancer should redirect the call to web1, web2 and web3 in a round-robin fashion.
