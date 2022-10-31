@@ -88,6 +88,12 @@
 
 # Docker Commands
 
+## Docker Overview
+- Docker is developed in Go Programming Language by Docker Inc organization
+- Docker comes in 2 flavours
+  1. Community Edition (CE) - No official support (Good for opensource projects and learning purpose)
+  2. Enterprise Edition (EE) - For commercial use (Comes with Support from Docker Inc)
+
 ## Listing Docker Images from Local Docker Registry
 ```
 docker images
@@ -157,3 +163,8 @@ Server:
   127.0.0.0/8
  Live Restore Enabled: false
 </pre>
+
+## Downloading Docker Image from Docker Remote Registry (Docker Hub website) to Docker Local Registry
+```
+docker pull hello-world:latest
+```
