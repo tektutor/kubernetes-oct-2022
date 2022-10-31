@@ -26,3 +26,12 @@ newgrp docker
 docker --version
 docker images
 ```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker --version</b>
+Docker version 20.10.21, build baeda1f
+
+jegan@tektutor.org:~/Desktop$ <b>docker images</b>
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+</pre>
