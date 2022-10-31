@@ -5,7 +5,7 @@ Quad Core
 32 GB RAM
 500 GB HDD(Storage)
 
-## Installing Docker Community Edition
+## Installing Docker Community Edition in Ubuntu 20.04 64-bit OS
 ```
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg lsb-release
@@ -18,4 +18,11 @@ echo \
   
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker --version
+docker images
 ```
