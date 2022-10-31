@@ -85,6 +85,28 @@
 
 ## What is Docker Private Registry?
 
+## What is a Container Runtime?
+- container Runtime is the software that manages containers
+  - creating a container
+  - listing a container
+  - deleting a container
+  - start a container
+  - restarting a container
+  - stopping a container
+- end-users like us doesn't use Container Runtimes directly
+- Container Runtimes are used by Container Engines to manage containers
+- Example
+  - runC is a Container Runtime
+  - CRI-O is a Container Runtime
+ 
+## What is a Container Engine?
+- Container Runtimes are low-level tools
+- Container Runtimes are used by Container Engine
+- is a high-level user-friendly tool that allows to create containers and manage them without knowing any container technology internals
+- Container Engines provide user-friendly commands to manage images and containers
+- Examples
+  - Docker is a Container Engine that uses runC Container Runtime
+  - Podman is a Container Engine that used CRI-O Container Runtime
 
 # Docker Commands
 
@@ -265,3 +287,5 @@ jegan@tektutor.org:~/Desktop$ <b>docker image inspect hello-world:latest</b>
     }
 ]
 </pre>
+
+
