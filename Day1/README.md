@@ -288,6 +288,25 @@ jegan@tektutor.org:~/Desktop$ <b>docker image inspect hello-world:latest</b>
 ]
 </pre>
 
+## ⛹️‍♂️ Lab - Deleting an docker image from local registry
+```
+docker rmi hello-world:latest
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker images</b>
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+nginx         latest    76c69feac34e   6 days ago      142MB
+hello-world   latest    feb5d9fea6a5   13 months ago   13.3kB
+ubuntu        16.04     b6f507652425   14 months ago   135MB
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker rmi hello-world:latest</b>
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:e18f0a777aefabe047a671ab3ec3eed05414477c951ab1a6f352a06974245fe7
+Deleted: sha256:feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412
+Deleted: sha256:e07ee1baac5fae6a26f30cabfe54a36d3402f96afda318fe0a96cec4ca393359
+</pre>
+
 ## ⛹️‍♂️ Lab - Creating a container and running the container
 ```
 docker run hello-world:latest
