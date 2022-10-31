@@ -43,10 +43,17 @@
 - The MCM Chip can be installed in a Single Socket on your Server grade Motherboard
 - Let's assume a MCM IC hosting 8 Processors each supporting 128 Cores
   - total cores supported - 8 x 128 x 2 = 2048 cores
-  - 
 
 
 ## What is Containerization?
+- is an application virtualization technology
+- each container will host one application
+- containers are not operating system
+- certain container features are similar to Operating System features but still container is a process not an OS
+- each container gets its own Virtual Network Card(NIC)
+- hence every container gets an IP Address
+- each container has a Network Stack (7 OSI layers)
+- each container has a file system
 
 ## What are the different Container Tools available?
 
