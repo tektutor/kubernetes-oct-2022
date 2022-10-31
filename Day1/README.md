@@ -370,6 +370,23 @@ CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS         
 eecfa4ad6752   ubuntu:16.04   "/bin/bash"   About a minute ago   Up About a minute             c1
 </pre>
 
+## Creating a container in interactively
+```
+docker run -it --name c1 --hostname c1 ubuntu:16.04 bash
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker run -it --name c1 --hostname c1 ubuntu:16.04 bash</b>
+root@c1:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@c1:/# <b>hostname -i</b>
+172.17.0.6
+root@c1:/# <b>exit</b>
+<b>exit</b>
+</pre>
+
+
 ## ⛹️‍♂️ Lab - Finding more details about the container
 ```
 docker inspect c1
