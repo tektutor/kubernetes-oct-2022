@@ -20,8 +20,12 @@
   - its own Graphics Card(Virtual)
 - Assume you have a laptop with 4 Cores(Quad Core Processor), 16 GB RAM and 500 GB Hard Disk
   - in such a laptop/desktop how many maximum Virtual Machine(VMs - Guest OS) we can run in parallel?
-
-
+- AMD Processor
+  - the virtualization feature is called AMD-V
+  - this must be enabled on the BIOS
+- Intel Processor
+  - the virtualization features is called VT-X
+  - this must be enabled on the BIOS
 
 ## What is Containerization?
 
