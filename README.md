@@ -5,6 +5,11 @@ Quad Core
 32 GB RAM
 500 GB HDD(Storage)
 
+## For detailed installation instructions, you may refer the official documentation here
+<pre>
+https://docs.docker.com/engine/install/
+</pre>
+
 ## Installing Docker Community Edition in Ubuntu 20.04 64-bit OS
 ```
 sudo apt-get update
