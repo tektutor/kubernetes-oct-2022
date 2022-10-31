@@ -75,6 +75,7 @@
 ## Difference between Docker(Containers) and Virtualization
 
 ## High Level Architecture of Virtualization(Hypervisor)
+![Hypervisor Architecture](HypervisorHighLevelArchitecture.png)
 
 ## High Level Architecture of Docker
 
@@ -92,4 +93,4 @@
 docker images
 ```
 
-
+## Finding more deta
