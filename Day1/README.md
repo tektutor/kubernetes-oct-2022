@@ -645,3 +645,27 @@ jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
 CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS         PORTS     NAMES
 eecfa4ad6752   ubuntu:16.04   "/bin/bash"   17 minutes ago   Up 3 seconds             c1
 </pre>
+
+## Deleting a running container gracefully
+```
+docker stop c1
+docker rm c1
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS              PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04   "/bin/bash"   19 minutes ago   Up About a minute             c1
+jegan@tektutor.org:~/Desktop$ <b>docker rm c1</b>
+Error response from daemon: You cannot remove a running container eecfa4ad6752f8177314d2c244b1609fd6bfe09a8679c9a1d967ab313034f0bd. Stop the container before attempting removal or force remove
+jegan@tektutor.org:~/Desktop$ <b>docker stop c1</b>
+c1
+jegan@tektutor.org:~/Desktop$ <b>docker rm c1</b>
+c1
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS                      PORTS     NAMES
+578ea075c2d4   hello-world:latest   "/hello"   31 minutes ago   Exited (0) 31 minutes ago             hello-container1
+</pre>
