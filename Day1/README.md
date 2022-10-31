@@ -565,12 +565,12 @@ docker inspect -f {{.NetworkSettings.IPAddress}} c1
 
 Expected output
 <pre>
-jegan@tektutor.org:~/Desktop$ docker inspect c1 | grep IPA
+jegan@tektutor.org:~/Desktop$ <b>docker inspect c1 | grep IPA</b>
             "SecondaryIPAddresses": null,
             "IPAddress": "172.17.0.2",
                     "IPAMConfig": null,
                     "IPAddress": "172.17.0.2",
-jegan@tektutor.org:~/Desktop$ docker inspect -f {{.NetworkSettings.IPAddress}} c1
+jegan@tektutor.org:~/Desktop$ <b>docker inspect -f {{.NetworkSettings.IPAddress}} c1</b>
 172.17.0.2
 </pre>
 
