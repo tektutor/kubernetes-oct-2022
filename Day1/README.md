@@ -607,3 +607,24 @@ CONTAINER ID   IMAGE                COMMAND       CREATED          STATUS       
 eecfa4ad6752   ubuntu:16.04         "/bin/bash"   12 minutes ago   Exited (0) 4 seconds ago              c1
 578ea075c2d4   hello-world:latest   "/hello"      25 minutes ago   Exited (0) 25 minutes ago             hello-container1
 </pre>
+
+
+## ⛹️‍♂️ Lab - Starting an exited container
+```
+docker ps -a
+docker start c1
+docker ps
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE                COMMAND       CREATED          STATUS                      PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04         "/bin/bash"   12 minutes ago   Exited (0) 4 seconds ago              c1
+578ea075c2d4   hello-world:latest   "/hello"      25 minutes ago   Exited (0) 25 minutes ago             hello-container1
+jegan@tektutor.org:~/Desktop$ <b>docker start c1</b>
+c1
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS        PORTS     NAMES
+eecfa4ad6752   ubuntu:16.04   "/bin/bash"   15 minutes ago   Up 1 second             c1
+</pre>
