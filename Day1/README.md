@@ -671,3 +671,24 @@ jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS                      PORTS     NAMES
 578ea075c2d4   hello-world:latest   "/hello"   31 minutes ago   Exited (0) 31 minutes ago             hello-container1
 </pre>
+
+## Deleting a running container forcibly
+```
+docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
+docker ps 
+docker rm -f c1
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash</b>
+bc543e4b7c3a75255bf68301e83d570c29c505de3db86cc5211edc67eb618e97
+jegan@tektutor.org:~/Desktop$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
+bc543e4b7c3a   ubuntu:16.04   "/bin/bash"   2 seconds ago   Up 2 seconds             c1
+jegan@tektutor.org:~/Desktop$ <b>docker rm -f c1</b>
+c1
+jegan@tektutor.org:~/Desktop$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE                COMMAND    CREATED          STATUS                      PORTS     NAMES
+578ea075c2d4   hello-world:latest   "/hello"   35 minutes ago   Exited (0) 35 minutes ago             hello-container1
+</pre>
