@@ -116,12 +116,12 @@
   1. Community Edition (CE) - No official support (Good for opensource projects and learning purpose)
   2. Enterprise Edition (EE) - For commercial use (Comes with Support from Docker Inc)
 
-## Listing Docker Images from Local Docker Registry
+## ⛹️‍♂️ Lab - Listing Docker Images from Local Docker Registry
 ```
 docker images
 ```
 
-## Finding more details about your docker setup
+## ⛹️‍♂️ Lab - Finding more details about your docker setup
 ```
 docker info
 ```
@@ -186,12 +186,12 @@ Server:
  Live Restore Enabled: false
 </pre>
 
-## Downloading Docker Image from Docker Remote Registry (Docker Hub website) to Docker Local Registry
+## ⛹️‍♂️ Lab - Downloading Docker Image from Docker Remote Registry (Docker Hub website) to Docker Local Registry
 ```
 docker pull hello-world:latest
 ```
 
-## Finding more details about an image
+## ⛹️‍♂️ Lab - Finding more details about an image
 ```
 docker image inspect hello-world:latest
 ```
@@ -288,7 +288,7 @@ jegan@tektutor.org:~/Desktop$ <b>docker image inspect hello-world:latest</b>
 ]
 </pre>
 
-## Creating a container and running the container
+## ⛹️‍♂️ Lab - Creating a container and running the container
 ```
 docker run hello-world:latest
 ```
@@ -320,7 +320,7 @@ For more examples and ideas, visit:
 </pre>
 
 
-## Creating an ubuntu container
+## ⛹️‍♂️ Lab - Creating an ubuntu container
 ```
 docker run -dit --name c1 --hostname c1 ubuntu:16.04 /bin/bash
 ```
@@ -339,7 +339,7 @@ Status: Downloaded newer image for ubuntu:16.04
 eecfa4ad6752f8177314d2c244b1609fd6bfe09a8679c9a1d967ab313034f0bd
 </pre>
 
-## Listing the currently running containers
+## ⛹️‍♂️ Lab - Listing the currently running containers
 ```
 docker ps
 ```
@@ -351,7 +351,7 @@ CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS         
 eecfa4ad6752   ubuntu:16.04   "/bin/bash"   About a minute ago   Up About a minute             c1
 </pre>
 
-## Finding more details about the container
+## ⛹️‍♂️ Lab - Finding more details about the container
 ```
 docker inspect c1
 ```
@@ -557,7 +557,7 @@ jegan@tektutor.org:~/Desktop$ <b>docker inspect c1</b>
 ]
 </pre>
 
-## Finding the IP Address of a running container
+## ⛹️‍♂️ Lab - Finding the IP Address of a running container
 ```
 docker inspect c1 | grep IPA
 docker inspect -f {{.NetworkSettings.IPAddress}} c1
@@ -574,7 +574,7 @@ jegan@tektutor.org:~/Desktop$ <b>docker inspect -f {{.NetworkSettings.IPAddress}
 172.17.0.2
 </pre>
 
-## Finding the Mac Address of the running container
+## ⛹️‍♂️ Lab - Finding the Mac Address of the running container
 ```
 docker inspect -f {{.NetworkSettings.MacAddress}} c1
 ```
