@@ -93,4 +93,67 @@
 docker images
 ```
 
-## Finding more deta
+## Finding more details about your docker setup
+```
+docker info
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker info</b>
+Client:
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  app: Docker App (Docker Inc., v0.9.1-beta3)
+  buildx: Docker Buildx (Docker Inc., v0.9.1-docker)
+  compose: Docker Compose (Docker Inc., v2.12.2)
+  scan: Docker Scan (Docker Inc., v0.21.0)
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 20.10.21
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runtime.v1.linux runc io.containerd.runc.v2
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 1c90a442489720eec95342e1789ee8a5e1b9536f
+ runc version: v1.1.4-0-g5fd4c4d
+ init version: de40ad0
+ Security Options:
+  apparmor
+  seccomp
+   Profile: default
+ Kernel Version: 5.15.0-52-generic
+ Operating System: Ubuntu 20.04.3 LTS
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 4
+ Total Memory: 4.072GiB
+ Name: tektutor.org
+ ID: PIAH:5RHX:IQ5Q:W35O:7SDD:J6CI:X33T:HKLS:MCFW:LOYC:NYOJ:6EXS
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+</pre>
