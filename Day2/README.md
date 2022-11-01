@@ -206,3 +206,21 @@ jegan@tektutor.org:~$ <b>kubectl get nodes</b>
 NAME       STATUS   ROLES           AGE   VERSION
 minikube   Ready    control-plane   18m   v1.25.2
 </pre>
+
+## Listing the kubernetes components running in master node under kube-system namespace
+```
+kubectl get po -n kube-system
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~$ <b>kubectl get po -n kube-system</b>
+NAME                               READY   STATUS    RESTARTS      AGE
+coredns-565d847f94-h46zz           1/1     Running   0             18m
+etcd-minikube                      1/1     Running   0             19m
+kube-apiserver-minikube            1/1     Running   0             19m
+kube-controller-manager-minikube   1/1     Running   0             19m
+kube-proxy-lp2pb                   1/1     Running   0             18m
+kube-scheduler-minikube            1/1     Running   0             19m
+storage-provisioner                1/1     Running   1 (18m ago)   19m
+</pre>
