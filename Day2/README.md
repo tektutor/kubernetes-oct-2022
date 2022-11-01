@@ -193,3 +193,16 @@ jegan@tektutor.org:~$ <b>kubectl get nodes</b>
 NAME       STATUS   ROLES           AGE     VERSION
 minikube   Ready    control-plane   6m18s   v1.25.2
 </pre>
+
+# Kubernetes Commands
+
+## Listing the kubernetes cluster nodes
+```
+kubectl get nodes
+```
+Expected output
+<pre>
+jegan@tektutor.org:~$ <b>kubectl get nodes</b>
+NAME       STATUS   ROLES           AGE   VERSION
+minikube   Ready    control-plane   18m   v1.25.2
+</pre>
