@@ -1483,6 +1483,176 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> 
 </pre>
 
+Let's create a database, table inside the database and insert some records.
+```
+CREATE DATABASE tektutor;
+USE tektutor;
+CREATE TABLE training ( id INT NOT NULL, name VARCHAR(200) NOT NULL, duration VARCHAR(200) NOT NULL, PRIMARY KEY(id) );
+
+INSERT INTO training VALUES (1, "DevOps", "5 Days");
+INSERT INTO training VALUES ( 2, "Microservices", "5 Days" );
+SELECT * FROM training;
+exit
+exit
+```
+
+Let's delete the db1 container
+```
+docker rm -f db1
+```
+
+Now along with the db1 container the database and all your records stored inside the training table got removed. As we didn't use volume mounting to store data outside the container.
+
+Now, let's use volume mounting to store databse and respective table records in a local system path.  In real world scenario, you could use NFS (Network File Server) shared path in the place of local sytem path or you could consider using AWS/Azure/any cloud storage services.
+
+```
+mkdir -p /tmp/mysql
+ls -lha /tmp/mysql
+docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest
+docker ps
+docker exec -it db1 sh
+mysql -u root -p
+CREATE DATABASE tektutor;
+USE tektutor;
+
+CREATE TABLE training ( id INT NOT NULL, name VARCHAR(200) NOT NULL, duration VARCHAR(200) NOT NULL, PRIMARY KEY(id) );
+
+INSERT INTO training VALUES ( 1, "DevOps", "5 Days" );
+INSERT INTO training VALUES ( 2, "Microservices", "5 Days" );
+
+SELECT * FROM training;
+
+exit
+exit
+
+docker rm -f db1
+docker ps
+docker ps -a
+docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest
+docker exec -it db1 sh
+mysql -u root -p
+SHOW DATABASES;
+USE tektutor;
+SHOW TABLES;
+SELECT * FROM training;
+exit
+exit
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022$ mkdir -p /tmp/mysql
+jegan@tektutor.org:~/kubernetes-oct-2022$ ls -lha /tmp/mysql
+total 8.0K
+drwxrwxr-x  2 jegan jegan 4.0K Oct 31 23:50 .
+drwxrwxrwt 21 root  root  4.0K Oct 31 23:50 ..
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest
+eb7ef83c10755b95ecd820d9202e3852216c5479a1ed84c85c792b601e022afe
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                 NAMES
+eb7ef83c1075   mysql:latest   "docker-entrypoint.s…"   4 seconds ago   Up 2 seconds   3306/tcp, 33060/tcp   db1
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker exec -it db1 sh
+sh-4.4# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE tektutor;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE tektutor;
+Database changed
+mysql> CREATE TABLE training ( id INT NOT NULL, name VARCHAR(200) NOT NULL, duration VARCHAR(200) NOT NULL, PRIMARY KEY(id) );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO training VALUES ( 1, "DevOps", "5 Days" );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO training VALUES ( 2, "Microservices", "5 Days" );
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM training;
++----+---------------+----------+
+| id | name          | duration |
++----+---------------+----------+
+|  1 | DevOps        | 5 Days   |
+|  2 | Microservices | 5 Days   |
++----+---------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+sh-4.4# exit
+exit
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker rm -f db1
+db1
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest
+0bda0b5ab010613f110eec955aa608a3809be2f0f84132817bbdba31b7e87ef0
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker exec -it db1 sh
+sh-4.4# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tektutor           |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> USE tektutor;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_tektutor |
++--------------------+
+| training           |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM training;
++----+---------------+----------+
+| id | name          | duration |
++----+---------------+----------+
+|  1 | DevOps        | 5 Days   |
+|  2 | Microservices | 5 Days   |
++----+---------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> 
+</pre>
+
 ## Assignments
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
 2. List all containers who name starts with ubuntu
