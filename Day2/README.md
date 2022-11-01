@@ -225,4 +225,4 @@ kube-proxy-lp2pb                   1/1     Running   0             18m
 storage-provisioner                1/1     Running   1 (18m ago)   19m
 </pre>
 
-The highlighted pods are the Control Plan Components that runs in a master node.
+The highlighted pods are the Control Plane Components that runs in a master node.
