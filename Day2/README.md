@@ -120,4 +120,48 @@
 ```
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
+minikube version
+minikube start
 ```
+
+Expected output
+<pre>
+jegan@tektutor.org:~$ <b>curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64</b>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 73.0M  100 73.0M    0     0  8493k      0  0:00:08  0:00:08 --:--:-- 8880k
+jegan@tektutor.org:~$ <b>ls</b>
+Desktop    Downloads  kubernetes-oct-2022   Music     Public     Videos
+Documents  git-token  minikube-linux-amd64  Pictures  Templates
+jegan@tektutor.org:~$ <b>sudo install minikube-linux-amd64 /usr/local/bin/minikube</b>
+[sudo] password for jegan: 
+jegan@tektutor.org:~$ <b>ls</b>
+Desktop    Downloads  kubernetes-oct-2022   Music     Public     Videos
+Documents  git-token  <b>minikube-linux-amd64</b>  Pictures  Templates
+jegan@tektutor.org:~$ <b>rm minikube-linux-amd64</b>
+jegan@tektutor.org:~$ <b>ls</b>
+Desktop  Documents  Downloads  git-token  kubernetes-oct-2022  Music  Pictures  Public  Templates  Videos
+jegan@tektutor.org:~$ <b>minikube version</b>
+minikube version: v1.27.1
+commit: fe869b5d4da11ba318eb84a3ac00f336411de7ba
+jegan@tektutor.org:~$ <b>minikube start</b>
+😄  minikube v1.27.1 on Ubuntu 20.04
+✨  Automatically selected the docker driver. Other choices: ssh, none
+📌  Using Docker driver with root privileges
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+💾  Downloading Kubernetes v1.25.2 preload ...
+    > preloaded-images-k8s-v18-v1...:  385.41 MiB / 385.41 MiB  100.00% 7.68 Mi
+    > gcr.io/k8s-minikube/kicbase:  387.11 MiB / 387.11 MiB  100.00% 4.74 MiB p
+    > gcr.io/k8s-minikube/kicbase:  0 B [________________________] ?% ? p/s 57s
+🔥  Creating docker container (CPUs=2, Memory=2200MB) ...
+🐳  Preparing Kubernetes v1.25.2 on Docker 20.10.18 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: default-storageclass, storage-provisioner
+💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+</pre>
