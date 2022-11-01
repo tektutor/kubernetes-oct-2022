@@ -1339,6 +1339,92 @@ jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker logs -f nginx1</b>
 </pre>
 
 
+## Port Forwarding - helps in exposing container services outside the machine where containers are running
+```
+docker rm -f $(docker ps -aq)
+docker run -d --name web1 --hostname web1 -p 8001:80 nginx:latest
+docker run -d --name web2 --hostname web2 -p 8002:80 nginx:latest
+```
+In the above command, port 8001 is the local port exposed and port 80 is the port where nginx web server is listening within the container.
+
+Whenever any http request comes to the virtual machine at port 8001 it would be forwared to web1 container at port 80.
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name web1 --hostname web1 -p 8001:80 nginx:latest 
+a9422258ff7dbb25dac7e22564d3201ee3ee840905c876460345741bfa4a444e
+jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name web2 --hostname web2 -p 8002:80 nginx:latest 
+82374591efdb211214c33ae714cb3c103b16fdb58c828fb4b474392d66f66597
+</pre>
+
+Accesssing the web page
+
+Find the IP Address of your virtual machine(lab machine)
+```
+ip addr show
+```
+
+In my case the IP address of my lab machine happens to be 192.168.167.164, yours might be different.
+
+```
+curl http://192.168.167.164:8001
+curl http://192.168.167.164:8002
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ curl http://192.168.167.164:8001
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+(jegan@tektutor.org)$ curl http://192.168.167.164:8002
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+</pre>
+
+
 ## Assignments
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
 2. List all containers who name starts with ubuntu
