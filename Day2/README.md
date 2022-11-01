@@ -303,4 +303,40 @@ nginx-6d666844f6-hk2jg   1/1     Running   0          21m
 kubectl scale deploy/nginx --replicas=5
 ```
 
-## What happens 
+## What happens internally within Kubernetes cluster when we create a deployment
+```
+kubectl create deployment nginx --image=nginx:latest
+```
+
+<pre>
+1. kubectl makes a REST API call to API Server request the API Server to create a Deployment by name 'nginx' with the docker image 'nginx:latest'
+
+2. API Server receives the request from kubectl, it then creates a record in etcd database for the deployment with the name nginx.
+
+3. API Server triggers a broadcasting event something like "New Deployment Created"
+
+4. Deployment Controller is registered to be notified for Deployment related events.  Deployment Controller receives the event and then it will send a REST call to API Server requesting it to create a ReplicaSet for the nginx deployment.
+
+5. API Server receives the request from Deployment Controller, it then creates a ReplicaSet record in etcd database for the nginx deployment.
+
+6. API Server triggers a broadcasting event something like "New ReplicaSet Created"
+
+7. ReplicaSet Controller is registered to be notified for ReplicaSet related events.  ReplicaSet controller receives the event and then it will send a REST call to API Server requesting it to create Pod entries.
+
+8. API Server receives the request from ReplicaSet Controller, it then creates so many Pod records in etcd database for the nginx deployment.
+
+9. API Server triggers a broadcasting event something like "New Pod Created"
+
+10. Scheduler receives the New Prod Created event, it identifies healthy nodes where those pods can be deployed and makes a REST call to API Server with its Scheduling recommendations.
+
+11. API Server receives the request from Scheduler, it then retrieves the corresponding Pod records from the etcd database and updates the Scheduling information(ie node where they can be deployed).
+
+12. API Server will trigger broadcasting events that "Pod Schedule" kind of events.
+
+13. kubelet running on each node will receive that event, if the node mentioned the node where kubelet is running.  Kubelet then interacts with the Container Runtime installed on the local machine, pull the docker image and creates the containers for the Pod.  Kubelet monitors the status and keeps updating the API Server via REST call. Kubelet sends this kind heart-beat status event frequently to API Server.
+
+14. API Server receives those events from kubelet, it retrieves the Pod entries from etcd database and then it updates with the current status of the Pod.  This is repeated for every Pod it received an event from respective kubelet.
+
+
+</pre>
+
