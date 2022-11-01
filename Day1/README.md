@@ -1016,7 +1016,7 @@ CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS     
 025eae84bd8f   registry:2   "/entrypoint.sh /etc…"   2 seconds ago   Up 2 seconds   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp   registry
 </pre>
 
-## Build a custom docker image and push the same to our Private Docker Registry
+## Build a custom docker image in the Local Docker Registry
 ```
 cd ~/kubernetes-oct-2022
 git pull
@@ -1183,6 +1183,36 @@ REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
 nginx                      latest    76c69feac34e   6 days ago       142MB
 registry                   2         dcb3d42c1744   3 weeks ago      24.1MB
 ubuntu                     16.04     b6f507652425   14 months ago    135MB
+</pre>
+
+## Pushing the custom Docker Image from Local Docker Registry to Private Docker Registry
+```
+
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker inspect registry|grep IPA</b>
+            "SecondaryIPAddresses": null,
+            "IPAddress": "172.17.0.2",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.17.0.2",
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker tag tektutor/ubuntu-with-vim:1.0 172.17.0.2:5000/ubuntu-with-vim:latest</b>
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker images</b>
+REPOSITORY                        TAG       IMAGE ID       CREATED              SIZE
+172.17.0.2:5000/ubuntu-with-vim   latest    6030b50fb5ca   About a minute ago   223MB
+tektutor/ubuntu-with-vim          1.0       6030b50fb5ca   About a minute ago   223MB
+nginx                             latest    76c69feac34e   6 days ago           142MB
+registry                          2         dcb3d42c1744   3 weeks ago          24.1MB
+ubuntu                            16.04     b6f507652425   14 months ago        135MB
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker push 172.17.0.2:5000/ubuntu-with-vim:latest</b>
+The push refers to repository [172.17.0.2:5000/ubuntu-with-vim]
+a782ad1a880d: Pushed 
+1251204ef8fc: Pushed 
+47ef83afae74: Pushed 
+df54c846128d: Pushed 
+be96a3f634de: Pushed 
+latest: digest: sha256:aa875775369d45ec379f66d0568f62e3ae5571e39347d23f8b65ba7c6ca57568 size: 1362
 </pre>
 
 
