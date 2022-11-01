@@ -138,6 +138,10 @@ It is a website - Docker Hub that hosts a whole bunch of Docker Images that you 
 
 ## What is Docker Private Registry?
 When you have your own Customized Docker Images that has your proprietary applications, you need a Docker Hub like registry within your office network so that Docker Images can be uploaded and can be accessed by other teams within your organization without worrying about any security issues.
+We could setup a Private Docker Registry using any one of the below approach
+- using Sonatype Nexus
+- using JFrog Artifactory
+- using regsitry:2 docker image from Docker Hub
 
 ## What is a Container Runtime?
 - container Runtime is the software that manages containers
@@ -996,6 +1000,30 @@ curl 172.17.0.5:80
 ```
 
 The expected response is, each time you do curl, the load balancer should redirect the call to web1, web2 and web3 in a round-robin fashion.
+
+## Setting up a Docker Private Registry
+```
+docker run -d -p 5000:5000 --restart always --name registry registry:2
+docker ps
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1$ <b>docker run -d -p 5000:5000 --restart always --name registry registry:2</b>
+025eae84bd8f1b7429461e12a8114caba9e0b2e54911cdb8246bea742617260a
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1$ <b>docker ps</b>
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+025eae84bd8f   registry:2   "/entrypoint.sh /etc…"   2 seconds ago   Up 2 seconds   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp   registry
+</pre>
+
+## Build a custom docker image and push the same to our Private Docker Registry
+```
+```
+
+Expected output
+<pre>
+
+</pre>
 
 
 ## Assignments
