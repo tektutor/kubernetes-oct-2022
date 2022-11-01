@@ -1,5 +1,49 @@
 # Day1
 
+## Lab Setup
+
+Our Lab machine
+- Ubuntu 20.04 64-bit OS
+- Quad Core
+- 32 GB RAM
+- 500 GB HDD(Storage)
+
+## For detailed installation instructions, you may refer the official documentation here
+<pre>
+https://docs.docker.com/engine/install/
+</pre>
+
+## Installing Docker Community Edition in Ubuntu 20.04 64-bit OS
+```
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+sudo apt-get update -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker --version
+docker images
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/Desktop$ <b>docker --version</b>
+Docker version 20.10.21, build baeda1f
+
+jegan@tektutor.org:~/Desktop$ <b>docker images</b>
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+</pre>
+
 ## What is HyperThreading(Intel)/SMT(AMD)?
 - Processors that support Hyperthreading/SMT allow each phyical core to execute 2 to 8 threads at the same time
 - Hyperthreading is Intel technology
@@ -57,22 +101,28 @@
      - it is through this feature, we can restrict a container hardware resource utilization
      - For instance, we can restrict a container using only 25% of CPU ( if the OS has let's 4 cores, the container can only use 1 core at the max )
  
-
 ## What is Containerization?
 - is an application virtualization technology
 - each container will host one application
-- containers are not operating system
+- containers are not Operating System
 - certain container features are similar to Operating System features but still container is a process not an OS
 - each container gets its own Virtual Network Card(NIC)
 - hence every container gets an IP Address
 - each container has a Network Stack (7 OSI layers)
 - each container has a file system
-- container doesn't not OS Kernel
+- container doesn't have its own OS Kernel
 - each container runs in its namespace
 
 ## What are the different Container Tools available?
+- LXC
+- Rkt ( pronounced as Rocket )
+- Podman
 
 ## Difference between Docker(Containers) and Virtualization
+- Virtual Machine is a fully functional Operating System while a container just hosts an application with all its dependencies
+- Each Virtual Machine get its own share of Hardware resources ( CPU Cores, RAM and Storage ), while containers share the hardware resources on the underlying Operating System where they run
+- Virtual Machines are heavy weight while Containers are light-weight
+- Only a limited number of Virtual Machines can be active on laptop while on the same laptop you could easily run 40~50 containers
 
 ## High Level Architecture of Virtualization(Hypervisor)
 ![Hypervisor Architecture](HypervisorHighLevelArchitecture.png)
@@ -80,10 +130,13 @@
 ## High Level Architecture of Docker
 
 ## What is Docker Local Registry?
+It is a folder on your Operating System where Docker maintains the images,containers, network, etc.,
 
 ## What is Docker Remote Registry?
+It is a website - Docker Hub that hosts a whole bunch of Docker Images that you could download locally and run those containerized application locally with zero configurations or installations
 
 ## What is Docker Private Registry?
+When you have your own Customized Docker Images that has your proprietary applications, you need a Docker Hub like registry within your office network so that Docker Images can be uploaded and can be accessed by other teams within your organization without worrying about any security issues.
 
 ## What is a Container Runtime?
 - container Runtime is the software that manages containers
