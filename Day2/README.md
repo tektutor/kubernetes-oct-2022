@@ -226,3 +226,14 @@ storage-provisioner                1/1     Running   1 (18m ago)   19m
 </pre>
 
 The highlighted pods are the Control Plane Components that runs in a master node.
+
+## Creating your first Kubernetes Deployment(application)
+```
+kubectl create deployment nginx --image=nginx:latest
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~$ <b>kubectl create deployment nginx --image=nginx:latest</b>
+deployment.apps/nginx created
+</pre>
