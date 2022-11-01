@@ -84,7 +84,6 @@
   - Endpoint Controller
   - Storage Controller
 
-
 ### Kubernetes Objects(Resources)
 - Pod
 - ReplicaSet
@@ -94,6 +93,10 @@
 - Route
 
 #### What is a Pod ?
+- In Kubernetes applications are managed as Pod
+- Pod is a group of related containers
+- the smallest unit that can be deployed and managed within K8s is Pod
+- IP address is assigned on a Pod level not on the container level.  If 2 containers are part of a single Pod, they share the same IP Address
 
 #### What is a ReplicaSet ?
 
