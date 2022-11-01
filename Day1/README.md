@@ -991,3 +991,9 @@ curl 172.17.0.5:80
 ```
 
 The expected response is, each time you do curl, the load balancer should redirect the call to web1, web2 and web3 in a round-robin fashion.
+
+
+## Assignments
+1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
+2. List all containers who name starts with ubuntu
+3. Delete all containers that were created using ubuntu:16.04 docker image
