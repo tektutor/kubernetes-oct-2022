@@ -217,10 +217,12 @@ Expected output
 jegan@tektutor.org:~$ <b>kubectl get po -n kube-system</b>
 NAME                               READY   STATUS    RESTARTS      AGE
 coredns-565d847f94-h46zz           1/1     Running   0             18m
-etcd-minikube                      1/1     Running   0             19m
-kube-apiserver-minikube            1/1     Running   0             19m
-kube-controller-manager-minikube   1/1     Running   0             19m
+<b>etcd-minikube                      1/1     Running   0             19m</b>
+<b>kube-apiserver-minikube            1/1     Running   0             19m</b>
+<b>kube-controller-manager-minikube   1/1     Running   0             19m</b>
 kube-proxy-lp2pb                   1/1     Running   0             18m
-kube-scheduler-minikube            1/1     Running   0             19m
+<b>kube-scheduler-minikube            1/1     Running   0             19m</b>
 storage-provisioner                1/1     Running   1 (18m ago)   19m
 </pre>
+
+The highlighted pods are the Control Plan Components that runs in a master node.
