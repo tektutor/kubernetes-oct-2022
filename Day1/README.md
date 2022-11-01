@@ -1424,7 +1424,7 @@ Commercial support is available at
 
 ```
 
-## Volume Mounting
+## ⛹️‍♂️ Lab - Volume Mounting
 
 Let's create a mysql db server container which stores data within container storage
 ```
@@ -1457,6 +1457,31 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED              STAT
 7777e1bbf150   mysql:latest   "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp   db1
 </pre>
 
+Let's open shell inside the mysql container
+```
+docker exec -it db1 sh
+mysql -u root -p
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker exec -it db1 sh</b>
+sh-4.4# <b>mysql -u root -p</b>
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+</pre>
 
 ## Assignments
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
