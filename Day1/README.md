@@ -48,8 +48,8 @@ REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 - Processors that support Hyperthreading/SMT allow each phyical core to execute 2 to 8 threads at the same time
 - Hyperthreading is Intel technology
 - While SMT(Simulateneous Multi Threading) is AMD's equivalent technology
-- Virtualization Softwares they see each Physical core as 2 Virtual Cores
-- In modern Processors, each Physical core are seen as 8 Virtual Cores
+- Virtualization Softwares see each Physical core as 2 Virtual Cores if they support Hyperthreading/SMT
+- In some high-end server grade Processors, each Physical core are seen as 8 Virtual Cores
 
 ## What is Hypervisor?
 - general term used to refer to the Virtualization Technology
