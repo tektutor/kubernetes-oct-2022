@@ -1653,7 +1653,7 @@ mysql> <b>SELECT * FROM training;</b>
 mysql> 
 </pre>
 
-Since we used an external volume ( local system folder ) to store the database, the data is intact even though we delete the mysql container and recreated a new one. This is how, containers are used in the real-world in the industry.  This is a best practice which highly encouraged.
+Since we used an external volume ( local system folder ) to store the database, the data is intact even though we deleted the mysql container and recreated a new one container. This is how, containers are used in the real-world in the industry.  This is a best practice which highly encouraged.
 
 ## Assignments
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
