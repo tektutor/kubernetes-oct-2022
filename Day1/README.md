@@ -342,6 +342,11 @@ jegan@tektutor.org:~/Desktop$ <b>docker image inspect hello-world:latest</b>
 ]
 </pre>
 
+## ⛹️‍♂️ Lab - Renaming a container
+```
+docker rename <current-container-name> <new-container-name>
+```
+
 ## ⛹️‍♂️ Lab - Deleting an docker image from local registry
 ```
 docker rmi hello-world:latest
