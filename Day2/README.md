@@ -340,7 +340,7 @@ kubectl create deployment nginx --image=nginx:latest
 
 ## Deploy a python microservice into Kubernetes cluster
 ```
-kubectl create deployment/hello --image=tektutor/hello-ms:3.0
+kubectl create deployment/hello --image=tektutor/hello-ms:3.0  --replicas=5
 ```
 
 Listing the deployment, replicaset and pods
