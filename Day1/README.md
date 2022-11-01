@@ -1541,18 +1541,18 @@ exit
 
 Expected output
 <pre>
-jegan@tektutor.org:~/kubernetes-oct-2022$ mkdir -p /tmp/mysql
-jegan@tektutor.org:~/kubernetes-oct-2022$ ls -lha /tmp/mysql
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>mkdir -p /tmp/mysql</b>
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>ls -lha /tmp/mysql</b>
 total 8.0K
 drwxrwxr-x  2 jegan jegan 4.0K Oct 31 23:50 .
 drwxrwxrwt 21 root  root  4.0K Oct 31 23:50 ..
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest</b>
 eb7ef83c10755b95ecd820d9202e3852216c5479a1ed84c85c792b601e022afe
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker ps
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker ps</b>
 CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                 NAMES
 eb7ef83c1075   mysql:latest   "docker-entrypoint.s…"   4 seconds ago   Up 2 seconds   3306/tcp, 33060/tcp   db1
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker exec -it db1 sh
-sh-4.4# mysql -u root -p
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker exec -it db1 sh</b>
+sh-4.4# <b>mysql -u root -p</b>
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 8
@@ -1566,21 +1566,21 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> CREATE DATABASE tektutor;
+mysql> <b>CREATE DATABASE tektutor;</b>
 Query OK, 1 row affected (0.01 sec)
 
-mysql> USE tektutor;
+mysql> <b>USE tektutor;</b>
 Database changed
-mysql> CREATE TABLE training ( id INT NOT NULL, name VARCHAR(200) NOT NULL, duration VARCHAR(200) NOT NULL, PRIMARY KEY(id) );
+mysql> <b>CREATE TABLE training ( id INT NOT NULL, name VARCHAR(200) NOT NULL, duration VARCHAR(200) NOT NULL, PRIMARY KEY(id) );</b>
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> INSERT INTO training VALUES ( 1, "DevOps", "5 Days" );
+mysql> <b>INSERT INTO training VALUES ( 1, "DevOps", "5 Days" );</b>
 Query OK, 1 row affected (0.01 sec)
 
-mysql> INSERT INTO training VALUES ( 2, "Microservices", "5 Days" );
+mysql> <b>INSERT INTO training VALUES ( 2, "Microservices", "5 Days" );</b>
 Query OK, 1 row affected (0.00 sec)
 
-mysql> SELECT * FROM training;
+mysql> <b>SELECT * FROM training;</b>
 +----+---------------+----------+
 | id | name          | duration |
 +----+---------------+----------+
@@ -1589,20 +1589,20 @@ mysql> SELECT * FROM training;
 +----+---------------+----------+
 2 rows in set (0.00 sec)
 
-mysql> exit
+mysql> <b>exit</b>
 Bye
-sh-4.4# exit
+sh-4.4# <b>exit</b>
 exit
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker rm -f db1
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker rm -f db1</b>
 db1
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker ps
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker ps</b>
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker ps -a
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker ps -a</b>
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root -v /tmp/mysql:/var/lib/mysql mysql:latest</b>
 0bda0b5ab010613f110eec955aa608a3809be2f0f84132817bbdba31b7e87ef0
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker exec -it db1 sh
-sh-4.4# mysql -u root -p
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker exec -it db1 sh</b>
+sh-4.4# <b>mysql -u root -p</b>
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 8
@@ -1616,7 +1616,7 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> SHOW DATABASES;
+mysql> <b>SHOW DATABASES;</b>
 +--------------------+
 | Database           |
 +--------------------+
@@ -1628,12 +1628,12 @@ mysql> SHOW DATABASES;
 +--------------------+
 5 rows in set (0.01 sec)
 
-mysql> USE tektutor;
+mysql> <b>USE tektutor;</b>
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
 Database changed
-mysql> SHOW TABLES;
+mysql> <b>SHOW TABLES;</b>
 +--------------------+
 | Tables_in_tektutor |
 +--------------------+
@@ -1641,7 +1641,7 @@ mysql> SHOW TABLES;
 +--------------------+
 1 row in set (0.00 sec)
 
-mysql> SELECT * FROM training;
+mysql> <b>SELECT * FROM training;</b>
 +----+---------------+----------+
 | id | name          | duration |
 +----+---------------+----------+
