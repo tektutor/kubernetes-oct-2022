@@ -336,7 +336,31 @@ kubectl create deployment nginx --image=nginx:latest
 13. kubelet running on each node will receive that event, if the node mentioned the node where kubelet is running.  Kubelet then interacts with the Container Runtime installed on the local machine, pull the docker image and creates the containers for the Pod.  Kubelet monitors the status and keeps updating the API Server via REST call. Kubelet sends this kind heart-beat status event frequently to API Server.
 
 14. API Server receives those events from kubelet, it retrieves the Pod entries from etcd database and then it updates with the current status of the Pod.  This is repeated for every Pod it received an event from respective kubelet.
-
-
 </pre>
 
+## Deploy a python microservice into Kubernetes cluster
+```
+kubectl create deployment/hello --image=tektutor/hello-ms:3.0
+```
+
+Listing the deployment, replicaset and pods
+```
+kubectl get deploy,rs,po
+```
+
+Creating an internal(ClusterIP) service
+```
+kubectl expose deploy/hello --type=ClusterIP --port=80
+```
+
+Listing the service
+```
+kubectl get services
+kubectl get service
+kubectl get svc
+```
+
+Finding more details about the service
+```
+kubectl describe svc/hello
+```
