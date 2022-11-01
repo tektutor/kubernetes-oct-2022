@@ -258,3 +258,23 @@ NAME    READY   UP-TO-DATE   AVAILABLE   AGE
 nginx   1/1     1            1           9m7s
 </pre>
 
+## Listing Replicasets under default namespace
+```
+kubectl get replicasets
+kubectl get replicaset
+kubectl get rs
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~$ kubectl get replicasets
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-6d666844f6   1         1         1       19m
+jegan@tektutor.org:~$ kubectl get replicaset
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-6d666844f6   1         1         1       19m
+jegan@tektutor.org:~$ kubectl get rs
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-6d666844f6   1         1         1       19m
+</pre>
+
