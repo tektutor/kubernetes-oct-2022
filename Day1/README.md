@@ -1501,9 +1501,9 @@ Let's delete the db1 container
 docker rm -f db1
 ```
 
-Now along with the db1 container the database and all your records stored inside the training table got removed. As we didn't use volume mounting to store data outside the container.
+As we didn't use volume mounting to store data outside the container, along with the db1 container, the database and all your records stored inside the training table got removed. This isn't best practice.
 
-Now, let's use volume mounting to store databse and respective table records in a local system path.  In real world scenario, you could use NFS (Network File Server) shared path in the place of local sytem path or you could consider using AWS/Azure/any cloud storage services.
+Now, let's use volume mounting to store database and respective table records in a local system path.  In real world scenario, you could use NFS (Network File Server) shared path in the place of local system path or you could consider using AWS/Azure/any cloud storage services.
 
 ```
 mkdir -p /tmp/mysql
