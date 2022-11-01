@@ -1424,6 +1424,39 @@ Commercial support is available at
 
 ```
 
+## Volume Mounting
+
+Let's create a mysql db server container which stores data within container storage
+```
+docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root mysql:latest
+docker ps
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root mysql:latest</b>
+Unable to find image 'mysql:latest' locally
+latest: Pulling from library/mysql
+d67a603b911a: Pull complete 
+0cf69c8f1492: Pull complete 
+a5ee239a0d3a: Pull complete 
+0f166cb3e327: Pull complete 
+882d294bf188: Pull complete 
+2649fc7eb806: Pull complete 
+bddb3394e2e3: Pull complete 
+93c83d9a2206: Pull complete 
+99d7f45787c0: Pull complete 
+234663a2e3ee: Pull complete 
+74531487bb7b: Pull complete 
+Digest: sha256:d4055451e7f42869e64089a60d1abc9e66eccde2910629f0dd666b53a5f230d8
+Status: Downloaded newer image for mysql:latest
+7777e1bbf150880b8b8f4766223292b568d651b153b96d1a10a576a9fec7f694
+
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                 NAMES
+7777e1bbf150   mysql:latest   "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp   db1
+</pre>
+
 
 ## Assignments
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
