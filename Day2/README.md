@@ -278,3 +278,22 @@ NAME               DESIRED   CURRENT   READY   AGE
 nginx-6d666844f6   1         1         1       19m
 </pre>
 
+## Listing pods under default namespace
+```
+kubectl get pods
+kubectl get pod
+kubectl get po
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~$ kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6d666844f6-hk2jg   1/1     Running   0          20m
+jegan@tektutor.org:~$ kubectl get pod
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6d666844f6-hk2jg   1/1     Running   0          20m
+jegan@tektutor.org:~$ kubectl get po
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6d666844f6-hk2jg   1/1     Running   0          21m
+</pre>
