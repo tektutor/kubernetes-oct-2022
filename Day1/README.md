@@ -1339,7 +1339,7 @@ jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker logs -f nginx1</b>
 </pre>
 
 
-## Port Forwarding - helps in exposing container services outside the machine where containers are running
+## ⛹️‍♂️ Lab - Port Forwarding - helps in exposing container services outside the machine where containers are running
 ```
 docker rm -f $(docker ps -aq)
 docker run -d --name web1 --hostname web1 -p 8001:80 nginx:latest
@@ -1351,9 +1351,9 @@ Whenever any http request comes to the virtual machine at port 8001 it would be 
 
 Expected output
 <pre>
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name web1 --hostname web1 -p 8001:80 nginx:latest 
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker run -d --name web1 --hostname web1 -p 8001:80 nginx:latest</b>
 a9422258ff7dbb25dac7e22564d3201ee3ee840905c876460345741bfa4a444e
-jegan@tektutor.org:~/kubernetes-oct-2022$ docker run -d --name web2 --hostname web2 -p 8002:80 nginx:latest 
+jegan@tektutor.org:~/kubernetes-oct-2022$ <b>docker run -d --name web2 --hostname web2 -p 8002:80 nginx:latest</b>
 82374591efdb211214c33ae714cb3c103b16fdb58c828fb4b474392d66f66597
 </pre>
 
@@ -1373,7 +1373,7 @@ curl http://192.168.167.164:8002
 
 Expected output
 ```
-(jegan@tektutor.org)$ <b>curl http://192.168.167.164:8001</b>
+(jegan@tektutor.org)$ curl http://192.168.167.164:8001
 <!DOCTYPE html>
 <html>
 <head>
@@ -1397,7 +1397,7 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-(jegan@tektutor.org)$ <b>curl http://192.168.167.164:8002</b>
+(jegan@tektutor.org)$ curl http://192.168.167.164:8002
 <!DOCTYPE html>
 <html>
 <head>
