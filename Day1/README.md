@@ -128,6 +128,7 @@ REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 ![Hypervisor Architecture](HypervisorHighLevelArchitecture.png)
 
 ## High Level Architecture of Docker
+![Docker Architecture](DockerHighLevelArchitecture.png)
 
 ## What is Docker Local Registry?
 It is a folder on your Operating System where Docker maintains the images,containers, network, etc.,
