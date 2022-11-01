@@ -1001,7 +1001,7 @@ curl 172.17.0.5:80
 
 The expected response is, each time you do curl, the load balancer should redirect the call to web1, web2 and web3 in a round-robin fashion.
 
-## Setting up a Docker Private Registry
+## ⛹️‍♂️ Lab - Setting up a Docker Private Registry
 ```
 docker run -d -p 5000:5000 --restart always --name registry registry:2
 docker ps
@@ -1016,7 +1016,7 @@ CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS     
 025eae84bd8f   registry:2   "/entrypoint.sh /etc…"   2 seconds ago   Up 2 seconds   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp   registry
 </pre>
 
-## Build a custom docker image in the Local Docker Registry
+## ⛹️‍♂️ Lab - Build a custom docker image in the Local Docker Registry
 ```
 cd ~/kubernetes-oct-2022
 git pull
@@ -1185,9 +1185,12 @@ registry                   2         dcb3d42c1744   3 weeks ago      24.1MB
 ubuntu                     16.04     b6f507652425   14 months ago    135MB
 </pre>
 
-## Pushing the custom Docker Image from Local Docker Registry to Private Docker Registry
+## ⛹️‍♂️ Lab - Pushing the custom Docker Image from Local Docker Registry to Private Docker Registry
 ```
-
+docker inspect registry|grep IPA
+docker tag tektutor/ubuntu-with-vim:1.0 172.17.0.2:5000/ubuntu-with-vim:latest
+docker images
+docker push 172.17.0.2:5000/ubuntu-with-vim:latest
 ```
 
 Expected output
@@ -1215,6 +1218,55 @@ be96a3f634de: Pushed
 latest: digest: sha256:aa875775369d45ec379f66d0568f62e3ae5571e39347d23f8b65ba7c6ca57568 size: 1362
 </pre>
 
+## ⛹️‍♂️ Lab - Creating a container pulling docker image from the Private Docker Registry
+
+Let's delete the images from our Local Docker Registry
+```
+docker rmi tektutor/ubuntu-with-vim:1.0 172.17.0.2:5000/ubuntu-with-vim:latest
+docker images
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker rmi tektutor/ubuntu-with-vim:1.0 172.17.0.2:5000/ubuntu-with-vim:latest</b>
+Untagged: tektutor/ubuntu-with-vim:1.0
+Untagged: 172.17.0.2:5000/ubuntu-with-vim:latest
+Untagged: 172.17.0.2:5000/ubuntu-with-vim@sha256:aa875775369d45ec379f66d0568f62e3ae5571e39347d23f8b65ba7c6ca57568
+Deleted: sha256:6030b50fb5ca186471f5e4810d19abd7b571d4f4da6bb2631be20dc58a85d12a
+Deleted: sha256:024c869a22c2e5e24e0c8dc11df85bd4f588e34b830b357376237a128db4fece
+Deleted: sha256:3cce0fcaac85d7cf26c6a4bd1c3d2d545f2ace83ce6c9cbebdd148fe7ed17036
+
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker images</b>
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+nginx        latest    76c69feac34e   6 days ago      142MB
+registry     2         dcb3d42c1744   3 weeks ago     24.1MB
+ubuntu       16.04     b6f507652425   14 months ago   135MB
+</pre>
+
+Let's create a container pulling image from our Private Docker Registry
+```
+docker run -dit --name c1 --hostname c1 172.17.0.2:5000/ubuntu-with-vim:latest bash
+docker ps
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker run -dit --name c1 --hostname c1 172.17.0.2:5000/ubuntu-with-vim:latest bash</b>
+Unable to find image '172.17.0.2:5000/ubuntu-with-vim:latest' locally
+latest: Pulling from ubuntu-with-vim
+58690f9b18fc: Already exists 
+b51569e7c507: Already exists 
+da8ef40b9eca: Already exists 
+fb15d46c38dc: Already exists 
+4e96ba1ccc52: Pull complete 
+Digest: sha256:aa875775369d45ec379f66d0568f62e3ae5571e39347d23f8b65ba7c6ca57568
+Status: Downloaded newer image for 172.17.0.2:5000/ubuntu-with-vim:latest
+308e8256504db722771ce580ebc8b53af8cc9a7eeee6c7122387ccc8e6c2d3e9
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker ps</b>
+CONTAINER ID   IMAGE                                    COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+<b>308e8256504d   172.17.0.2:5000/ubuntu-with-vim:latest   "bash"                   8 seconds ago   Up 6 seconds                                               c1</b>
+025eae84bd8f   registry:2                               "/entrypoint.sh /etc…"   4 minutes ago   Up 4 minutes   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp   registry
+</pre>
 
 ## Assignments
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
