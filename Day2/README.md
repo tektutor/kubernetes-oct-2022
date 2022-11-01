@@ -297,3 +297,10 @@ jegan@tektutor.org:~$ kubectl get po
 NAME                     READY   STATUS    RESTARTS   AGE
 nginx-6d666844f6-hk2jg   1/1     Running   0          21m
 </pre>
+
+## Scale up nginx deployment to 5 Pods
+```
+kubectl scale deploy/nginx --replicas=5
+```
+
+## What happens 
