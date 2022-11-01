@@ -29,11 +29,13 @@
 3. Red Hat OpenShift ( It is developed on top of Kubernetes with many additional features )
    - only supports CRI-O Container Runtime
 
-
 ## Kubernetes
 - is an Container Orchestration Platform developed by Google using Go Programming Language
 - it is an opensource project
+- Kubernetes in shorts is also reffered as k8s
 - it works as a cluster of nodes
+- Kubernetes cluster may have 1 or more master nodes and 1 or more worker nodes
+- Kubernetes cluster that has many master nodes are considered more stable and production grade
 - nodes are servers/virtual machines/cloud virtual machines
 - there are two type of nodes
   1. Master 
@@ -44,3 +46,61 @@
   2. Worker
      - Supports only Worker Role
      - User applications are deployed
+- Some importants tools
+  - kubectl (client tool used by end-users to interact with Kubernetes cluster)
+  - kubeadm ( is an administrative tool that helps in bootstrapping master node and adding/removing worker nodes from Kubernetes cluster)
+  - kubelet ( is Kubernetes Container Agent that interacts with Container Runtime via Container Runtime Interface )
+
+## What are the Control Plan Components?
+1. API Server ( implements all orchestrations functionality as REST API )
+2. etcd ( key/value pair data-store )
+3. Scheduler
+4. Controller Managers ( it is a collection many Controllers )
+
+### What does the API Server do?
+- API Server is the critical component of Control Plane in the master node
+- All the k8s components communicate only to API Server
+- API Server is the only component allowed to talk to etc data-store
+- API Server save the cluster state ( include application status ) into the etcd database
+- each time API Server updates something in etcd datastore, it trigger some specific events
+
+### What is etcd ?
+- is an independent opensource project used by Kubernetes
+- this is where the Control Plane and application status is recorded and maintained
+- even if the Kubernetes cluster goes unstable, we can recover the Kubernetes cluster based on etcd data
+- though single etcd datastore is sufficient, generally in a production K8s cluster, a cluster etcd datastores are created
+- when a cluster of etcd data-store, each etcd is connected to one master node
+
+### What is Scheduler ?
+- this is component responsible to identify a health node where user application can be deployed
+- scheduler identifies node(s) to deploy user applications and nofifies the API Server with its recommendation
+
+### What is Controller Manager(s)
+- collection of many Controllers
+- some controllers
+  - Deployment Controller
+  - ReplicaSet Controller
+  - Job Controller
+  - Endpoint Controller
+  - Storage Controller
+
+
+### Kubernetes Objects(Resources)
+- Pod
+- ReplicaSet
+- Deployment
+- Service
+- Ingress
+- Route
+
+#### What is a Pod ?
+
+#### What is a ReplicaSet ?
+
+#### What is a Deployment ?
+
+#### What is a Service ?
+
+#### What is an Ingress ?
+
+#### What is a Route ?
