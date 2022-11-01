@@ -364,3 +364,13 @@ Finding more details about the service
 ```
 kubectl describe svc/hello
 ```
+
+Scaling up the number of Pods in a Deployment
+```
+kubectl scale deploy/hello --replicas=10
+```
+
+Scaling down the number of Pods in a Deployment
+```
+kubectl scale deploy/hello --replicas=3
+```
