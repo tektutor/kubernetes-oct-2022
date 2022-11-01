@@ -1,42 +1,24 @@
-# Lab Setup
+### Feel free to reach me out to deliver your Corporate Training and/or your Software Consulting requirements
 
-Our Lab machine is an Ubuntu 20.04 64-bit OS
-Quad Core
-32 GB RAM
-500 GB HDD(Storage)
+- jegan@tektutor.org
+- +91 822-000-5626
 
-## For detailed installation instructions, you may refer the official documentation here
+### My YouTube Channel
 <pre>
-https://docs.docker.com/engine/install/
+https://www.youtube.com/c/JeganathanSwaminathan/videos
 </pre>
 
-## Installing Docker Community Edition in Ubuntu 20.04 64-bit OS
-```
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg lsb-release -y
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  
-sudo apt-get update -y
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-sudo systemctl enable docker
-sudo systemctl start docker
-sudo systemctl status docker
-sudo usermod -aG docker $USER
-newgrp docker
-docker --version
-docker images
-```
-
-Expected output
+### My medium blogs
 <pre>
-jegan@tektutor.org:~/Desktop$ <b>docker --version</b>
-Docker version 20.10.21, build baeda1f
+https://medium.com/@jegan_50867/docker-overview-be840f727b3
 
-jegan@tektutor.org:~/Desktop$ <b>docker images</b>
-REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+https://medium.com/tektutor/container-engine-vs-container-runtime-667a99042f3
+
+https://medium.com/@jegan_50867/docker-commands-ba19387383b4
+
+https://medium.com/tektutor/ci-cd-with-maven-github-docker-jenkins-aca28c252fec
+
+https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
+
+https://medium.com/tektutor
 </pre>
