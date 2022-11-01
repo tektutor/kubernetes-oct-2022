@@ -178,7 +178,7 @@ kubectl get nodes
 
 Expected output
 <pre>
-egan@tektutor.org:~$ <b>curl -LO https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl</b>
+jegan@tektutor.org:~$ <b>curl -LO https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl</b>
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   138  100   138    0     0    371      0 --:--:-- --:--:-- --:--:--   371
