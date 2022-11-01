@@ -1185,6 +1185,23 @@ registry                   2         dcb3d42c1744   3 weeks ago      24.1MB
 ubuntu                     16.04     b6f507652425   14 months ago    135MB
 </pre>
 
+## ⛹️‍♂️ Lab - Configuring Docker to accept images from insecure(http protocol as opposed to https) Docker Registries
+
+We need to create a file /etc/docker/daemon.json with the below content as root user
+```
+{
+	"insecure-registries": ["172.17.0.2:5000"]
+}
+```
+The assumption is, your registry container IP is 172.17.0.2, please feel free to update the IP address with your registry container IP Address if it is different.
+
+We need to restart docker to apply the config changes
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo systemctl status docker
+```
+
 ## ⛹️‍♂️ Lab - Pushing the custom Docker Image from Local Docker Registry to Private Docker Registry
 ```
 docker inspect registry|grep IPA
@@ -1218,22 +1235,6 @@ be96a3f634de: Pushed
 latest: digest: sha256:aa875775369d45ec379f66d0568f62e3ae5571e39347d23f8b65ba7c6ca57568 size: 1362
 </pre>
 
-## ⛹️‍♂️ Lab - Configuring Docker to accept images from insecure(http protocol as opposed to https) Docker Registries
-
-We need to create a file /etc/docker/daemon.json with the below content as root user
-```
-{
-	"insecure-registries": ["172.17.0.2:5000"]
-}
-```
-The assumption is, your registry container IP is 172.17.0.2, please feel free to update the IP address with your registry container IP Address if it is different.
-
-We need to restart docker to apply the config changes
-```
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-sudo systemctl status docker
-```
 
 ## ⛹️‍♂️ Lab - Creating a container pulling docker image from the Private Docker Registry
 
