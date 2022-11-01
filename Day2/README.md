@@ -114,3 +114,10 @@
 #### What is an Ingress ?
 
 #### What is a Route ?
+
+
+## Installing Kubernetes using Minikube project
+```
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
