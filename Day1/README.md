@@ -1018,11 +1018,171 @@ CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS     
 
 ## Build a custom docker image and push the same to our Private Docker Registry
 ```
+cd ~/kubernetes-oct-2022
+git pull
+cd Day1/CustomDockerImage
+docker build -t tektutor/ubuntu-with-vim:1.0 .
 ```
 
 Expected output
 <pre>
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker build -t tektutor/ubuntu-with-vim:1.0 .</b>
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM ubuntu:16.04
+ ---> b6f507652425
+Step 2/3 : MAINTAINER Jeganathan Swaminathan <jegan@tektutor.org>
+ ---> Running in d5002404e9f5
+Removing intermediate container d5002404e9f5
+ ---> 3cce0fcaac85
+Step 3/3 : RUN apt update && apt install -y vim
+ ---> Running in 7c4ef5691b56
 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [99.8 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial InRelease [247 kB]
+Get:3 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [2051 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [99.8 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [97.4 kB]
+Get:6 http://archive.ubuntu.com/ubuntu xenial/main amd64 Packages [1558 kB]
+Get:7 http://archive.ubuntu.com/ubuntu xenial/restricted amd64 Packages [14.1 kB]
+Get:8 http://archive.ubuntu.com/ubuntu xenial/universe amd64 Packages [9827 kB]
+Get:9 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [15.9 kB]
+Get:10 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [984 kB]
+Get:11 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages [8820 B]
+Get:12 http://archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]
+Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [2560 kB]
+Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [16.4 kB]
+Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [1544 kB]
+Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [26.2 kB]
+Get:17 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [10.9 kB]
+Get:18 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [12.7 kB]
+Fetched 19.3 MB in 5s (3478 kB/s)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+All packages are up to date.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  file libexpat1 libgpm2 libmagic1 libmpdec2 libpython3.5 libpython3.5-minimal
+  libpython3.5-stdlib libsqlite3-0 libssl1.0.0 mime-support vim-common
+  vim-runtime
+Suggested packages:
+  gpm ctags vim-doc vim-scripts vim-gnome-py2 | vim-gtk-py2 | vim-gtk3-py2
+  | vim-athena-py2 | vim-nox-py2
+The following NEW packages will be installed:
+  file libexpat1 libgpm2 libmagic1 libmpdec2 libpython3.5 libpython3.5-minimal
+  libpython3.5-stdlib libsqlite3-0 libssl1.0.0 mime-support vim vim-common
+  vim-runtime
+0 upgraded, 14 newly installed, 0 to remove and 0 not upgraded.
+Need to get 12.2 MB of archives.
+After this operation, 58.4 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgpm2 amd64 1.20.4-6.1 [16.5 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libmagic1 amd64 1:5.25-2ubuntu1.4 [216 kB]
+Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 file amd64 1:5.25-2ubuntu1.4 [21.2 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libexpat1 amd64 2.1.0-7ubuntu0.16.04.5 [71.5 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial/main amd64 libmpdec2 amd64 2.4.2-1 [82.6 kB]
+Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libssl1.0.0 amd64 1.0.2g-1ubuntu4.20 [1083 kB]
+Get:7 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5-minimal amd64 3.5.2-2ubuntu0~16.04.13 [524 kB]
+Get:8 http://archive.ubuntu.com/ubuntu xenial/main amd64 mime-support all 3.59ubuntu1 [31.0 kB]
+Get:9 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libsqlite3-0 amd64 3.11.0-1ubuntu1.5 [398 kB]
+Get:10 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5-stdlib amd64 3.5.2-2ubuntu0~16.04.13 [2135 kB]
+Get:11 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim-common amd64 2:7.4.1689-3ubuntu1.5 [104 kB]
+Get:12 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5 amd64 3.5.2-2ubuntu0~16.04.13 [1360 kB]
+Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim-runtime all 2:7.4.1689-3ubuntu1.5 [5169 kB]
+Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim amd64 2:7.4.1689-3ubuntu1.5 [1036 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 12.2 MB in 2s (4400 kB/s)
+Selecting previously unselected package libgpm2:amd64.
+(Reading database ... 4785 files and directories currently installed.)
+Preparing to unpack .../libgpm2_1.20.4-6.1_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.4-6.1) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../libmagic1_1%3a5.25-2ubuntu1.4_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.25-2ubuntu1.4) ...
+Selecting previously unselected package file.
+Preparing to unpack .../file_1%3a5.25-2ubuntu1.4_amd64.deb ...
+Unpacking file (1:5.25-2ubuntu1.4) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.1.0-7ubuntu0.16.04.5_amd64.deb ...
+Unpacking libexpat1:amd64 (2.1.0-7ubuntu0.16.04.5) ...
+Selecting previously unselected package libmpdec2:amd64.
+Preparing to unpack .../libmpdec2_2.4.2-1_amd64.deb ...
+Unpacking libmpdec2:amd64 (2.4.2-1) ...
+Selecting previously unselected package libssl1.0.0:amd64.
+Preparing to unpack .../libssl1.0.0_1.0.2g-1ubuntu4.20_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.2g-1ubuntu4.20) ...
+Selecting previously unselected package libpython3.5-minimal:amd64.
+Preparing to unpack .../libpython3.5-minimal_3.5.2-2ubuntu0~16.04.13_amd64.deb ...
+Unpacking libpython3.5-minimal:amd64 (3.5.2-2ubuntu0~16.04.13) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../mime-support_3.59ubuntu1_all.deb ...
+Unpacking mime-support (3.59ubuntu1) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../libsqlite3-0_3.11.0-1ubuntu1.5_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.11.0-1ubuntu1.5) ...
+Selecting previously unselected package libpython3.5-stdlib:amd64.
+Preparing to unpack .../libpython3.5-stdlib_3.5.2-2ubuntu0~16.04.13_amd64.deb ...
+Unpacking libpython3.5-stdlib:amd64 (3.5.2-2ubuntu0~16.04.13) ...
+Selecting previously unselected package vim-common.
+Preparing to unpack .../vim-common_2%3a7.4.1689-3ubuntu1.5_amd64.deb ...
+Unpacking vim-common (2:7.4.1689-3ubuntu1.5) ...
+Selecting previously unselected package libpython3.5:amd64.
+Preparing to unpack .../libpython3.5_3.5.2-2ubuntu0~16.04.13_amd64.deb ...
+Unpacking libpython3.5:amd64 (3.5.2-2ubuntu0~16.04.13) ...
+Selecting previously unselected package vim-runtime.
+Preparing to unpack .../vim-runtime_2%3a7.4.1689-3ubuntu1.5_all.deb ...
+Adding 'diversion of /usr/share/vim/vim74/doc/help.txt to /usr/share/vim/vim74/doc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim74/doc/tags to /usr/share/vim/vim74/doc/tags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:7.4.1689-3ubuntu1.5) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../vim_2%3a7.4.1689-3ubuntu1.5_amd64.deb ...
+Unpacking vim (2:7.4.1689-3ubuntu1.5) ...
+Processing triggers for libc-bin (2.23-0ubuntu11.3) ...
+Setting up libgpm2:amd64 (1.20.4-6.1) ...
+Setting up libmagic1:amd64 (1:5.25-2ubuntu1.4) ...
+Setting up file (1:5.25-2ubuntu1.4) ...
+Setting up libexpat1:amd64 (2.1.0-7ubuntu0.16.04.5) ...
+Setting up libmpdec2:amd64 (2.4.2-1) ...
+Setting up libssl1.0.0:amd64 (1.0.2g-1ubuntu4.20) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libpython3.5-minimal:amd64 (3.5.2-2ubuntu0~16.04.13) ...
+Setting up mime-support (3.59ubuntu1) ...
+Setting up libsqlite3-0:amd64 (3.11.0-1ubuntu1.5) ...
+Setting up libpython3.5-stdlib:amd64 (3.5.2-2ubuntu0~16.04.13) ...
+Setting up vim-common (2:7.4.1689-3ubuntu1.5) ...
+Setting up libpython3.5:amd64 (3.5.2-2ubuntu0~16.04.13) ...
+Setting up vim-runtime (2:7.4.1689-3ubuntu1.5) ...
+Setting up vim (2:7.4.1689-3ubuntu1.5) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+Processing triggers for libc-bin (2.23-0ubuntu11.3) ...
+Removing intermediate container 7c4ef5691b56
+ ---> 6030b50fb5ca
+Successfully built 6030b50fb5ca
+Successfully tagged tektutor/ubuntu-with-vim:1.0
+jegan@tektutor.org:~/kubernetes-oct-2022/Day1/CustomDockerImage$ <b>docker images</b>
+REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
+<b>tektutor/ubuntu-with-vim   1.0       6030b50fb5ca   16 seconds ago   223MB</b>
+nginx                      latest    76c69feac34e   6 days ago       142MB
+registry                   2         dcb3d42c1744   3 weeks ago      24.1MB
+ubuntu                     16.04     b6f507652425   14 months ago    135MB
 </pre>
 
 
