@@ -99,8 +99,15 @@
 - IP address is assigned on a Pod level not on the container level.  If 2 containers are part of a single Pod, they share the same IP Address
 
 #### What is a ReplicaSet ?
+- ReplicaSet manages Pod and the number instance of Pods that is supposed to be running
+- Each ReplicaSet has one or more Pods
 
 #### What is a Deployment ?
+- generally we deploy our application as Kubernetes Deployment
+- Kubernetes Deployment creates ReplicaSet to manage the Pods
+- Deployment manages ReplicaSet
+- Each Deployment has one or more ReplicaSet
+- This is Kubernetes object that represents your application deployment within Kubernetes
 
 #### What is a Service ?
 
