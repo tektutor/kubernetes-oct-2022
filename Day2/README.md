@@ -237,3 +237,24 @@ Expected output
 jegan@tektutor.org:~$ <b>kubectl create deployment nginx --image=nginx:latest</b>
 deployment.apps/nginx created
 </pre>
+
+## Listing the deployment under default namespace
+```
+kubectl get deployments
+kubectl get deployment
+kubectl get deploy
+```
+
+Expected output
+<pre>
+jegan@tektutor.org:~$ kubectl get deployments
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           9m3s
+jegan@tektutor.org:~$ kubectl get deployment
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           9m5s
+jegan@tektutor.org:~$ kubectl get deploy
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           9m7s
+</pre>
+
