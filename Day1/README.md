@@ -997,3 +997,5 @@ The expected response is, each time you do curl, the load balancer should redire
 1. Create 3~5 nginx web server containers and put them behind an Apache Tomcat LoadBalancer Container
 2. List all containers who name starts with ubuntu
 3. Delete all containers that were created using ubuntu:16.04 docker image
+4. Create a custom docker image that has vim tree git tools pre-installed
+5. Create a custom docker image that supports SSH connections with a key-based login authentication
