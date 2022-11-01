@@ -165,3 +165,31 @@ jegan@tektutor.org:~$ <b>minikube start</b>
 💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 </pre>
+
+## Installing kubernetes client tool(kubectl) in Linux
+```
+curl -LO https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl
+ls
+chmod +x ./kubectl
+ls
+sudo mv kubectl /usr/local/bin
+kubectl get nodes
+```
+
+Expected output
+<pre>
+egan@tektutor.org:~$ <b>curl -LO https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl</b>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   138  100   138    0     0    371      0 --:--:-- --:--:-- --:--:--   371
+100 42.9M  100 42.9M    0     0  9125k      0  0:00:04  0:00:04 --:--:-- 10.1M
+jegan@tektutor.org:~$ <b>ls</b>
+Desktop  Documents  Downloads  git-token  <b>kubectl</b>  kubernetes-oct-2022  Music  Pictures  Public  Templates  Videos
+jegan@tektutor.org:~$ <b>chmod +x ./kubectl</b>
+jegan@tektutor.org:~$ <b>ls</b>
+Desktop  Documents  Downloads  git-token  kubectl  kubernetes-oct-2022  Music  Pictures  Public  Templates  Videos
+jegan@tektutor.org:~$ <b>sudo mv kubectl /usr/local/bin</b>
+jegan@tektutor.org:~$ <b>kubectl get nodes</b>
+NAME       STATUS   ROLES           AGE     VERSION
+minikube   Ready    control-plane   6m18s   v1.25.2
+</pre>
