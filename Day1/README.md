@@ -1373,7 +1373,7 @@ curl http://192.168.167.164:8002
 
 Expected output
 ```
-(jegan@tektutor.org)$ curl http://192.168.167.164:8001
+(jegan@tektutor.org)$ <b>curl http://192.168.167.164:8001</b>
 <!DOCTYPE html>
 <html>
 <head>
@@ -1397,7 +1397,7 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-(jegan@tektutor.org)$ curl http://192.168.167.164:8002
+(jegan@tektutor.org)$ <b>curl http://192.168.167.164:8002</b>
 <!DOCTYPE html>
 <html>
 <head>
