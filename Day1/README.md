@@ -1372,7 +1372,7 @@ curl http://192.168.167.164:8002
 ```
 
 Expected output
-<pre>
+```
 (jegan@tektutor.org)$ curl http://192.168.167.164:8001
 <!DOCTYPE html>
 <html>
@@ -1422,7 +1422,7 @@ Commercial support is available at
 </body>
 </html>
 
-</pre>
+```
 
 
 ## Assignments
