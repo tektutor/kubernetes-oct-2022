@@ -167,3 +167,25 @@ Commercial support is available at
 </body>
 </html>
 ```
+
+The other way to access the nodeport service is within some Pod
+```
+curl http://<service-name>:<service-port>
+curl http://nginx:8080
+```
+
+## Creating LoadBalancer external service
+
+This type of service is normally used in public cloud.
+
+```
+kubectl delete svc/nginx
+kubectl expose deploy/nginx --type=LoadBalancer --port=8080
+kubectl get svc
+kubectl describe svc/nginx
+```
+
+Accessing the LoadBalancer service
+```
+curl <load-balancer-ip>:8080
+```
