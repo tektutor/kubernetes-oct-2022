@@ -259,3 +259,28 @@ root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# <b>kubectl crea
 root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# <b>ls</b>
 nginx-deploy.yml
 </pre>
+
+Creating the deployment in declarative style
+```
+kubectl create -f nginx-deploy.yml
+```
+
+Expected output
+<pre>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl create  -f  nginx-deploy.yml 
+deployment.apps/nginx created
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl get deploy,rs,po
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx   5/5     5            5           8s
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-66664d749f   5         5         5       8s
+
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/dnsutils                 1/1     Running   0          135m
+pod/nginx-66664d749f-dpwd6   1/1     Running   0          8s
+pod/nginx-66664d749f-8f5rd   1/1     Running   0          8s
+pod/nginx-66664d749f-srtk5   1/1     Running   0          8s
+pod/nginx-66664d749f-5nwvc   1/1     Running   0          8s
+pod/nginx-66664d749f-58gmh   1/1     Running   0          8s
+</pre>
