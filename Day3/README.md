@@ -65,3 +65,105 @@ Commercial support is available at
 </html>
 # exit
 ```
+
+## Creating an external NodePort service for nginx deployment
+```
+kubectl delete svc/nginx 
+kubectl expose deploy/nginx --type=NodePort --port=8080
+kubectl describe svc/nginx 
+kubectl get nodes -o wide
+```
+
+Testing the NodePort external service from local machine
+```
+curl <node-ip>:<node-port>
+```
+
+Expected output
+```
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# kubectl delete svc/nginx
+service "nginx" deleted
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# kubectl expose deploy/nginx --type=NodePort --port=8080
+service/nginx exposed
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# kubectl get svc
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP          104m
+nginx        NodePort    10.43.120.145   <none>        8080:30303/TCP   3s
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# kubectl get nodes -o wide
+NAME                   STATUS   ROLES                  AGE    VERSION        INTERNAL-IP       EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+worker1.tektutor.org   Ready    <none>                 97m    v1.25.3+k3s1   192.168.167.135   <none>        Ubuntu 20.04.3 LTS   5.15.0-52-generic   docker://20.10.17
+master.tektutor.org    Ready    control-plane,master   104m   v1.25.3+k3s1   192.168.167.152   <none>        Ubuntu 20.04.3 LTS   5.15.0-52-generic   docker://20.10.17
+worker2.tektutor.org   Ready    <none>                 96m    v1.25.3+k3s1   192.168.167.136   <none>        Ubuntu 20.04.3 LTS   5.15.0-52-generic   docker://20.10.17
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# curl 192.168.167.135:30303
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# curl 192.168.167.152:30303
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# curl 192.168.167.136:30303
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
