@@ -35,7 +35,7 @@ curl http://nginx:8080
 ```
 
 Expected output
-<pre>
+```
 root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# kubectl exec -it utils-7b4dcffbfd-w5cwg sh
 kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
 
@@ -64,4 +64,4 @@ Commercial support is available at
 </body>
 </html>
 # exit
-</pre>
+```
