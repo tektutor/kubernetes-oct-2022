@@ -278,3 +278,20 @@ nginx-66664d749f-dpwd6   1/1     Running   0          6m5s
 nginx-66664d749f-8f5rd   1/1     Running   0          6m5s
 nginx-66664d749f-58gmh   1/1     Running   0          6m5s
 </pre>
+
+## Deleting kubernetes resource in declarative style
+```
+kubectl delete -f nginx-deploy.yml
+```
+
+Expected output
+<pre>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl delete -f nginx-deploy.yml 
+deployment.apps "nginx" deleted
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl get all
+NAME           READY   STATUS    RESTARTS   AGE
+pod/dnsutils   1/1     Running   0          145m
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   3h38m
+</pre>
