@@ -34,31 +34,6 @@ kubectl exec -it utils-7b4dcffbfd-w5cwg sh
 curl http://nginx:8080
 ```
 
-Creating deployment in declarative style
-```
-kubectl create  -f  nginx-deploy.yml 
-```
-
-Expected output
-<pre>
-root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# <b>kubectl create  -f  nginx-deploy.yml </b>
-deployment.apps/nginx created
-root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# <b>kubectl get deploy,rs,po</b>
-NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/nginx   5/5     5            5           8s
-
-NAME                               DESIRED   CURRENT   READY   AGE
-replicaset.apps/nginx-66664d749f   5         5         5       8s
-
-NAME                         READY   STATUS    RESTARTS   AGE
-pod/dnsutils                 1/1     Running   0          135m
-pod/nginx-66664d749f-dpwd6   1/1     Running   0          8s
-pod/nginx-66664d749f-8f5rd   1/1     Running   0          8s
-pod/nginx-66664d749f-srtk5   1/1     Running   0          8s
-pod/nginx-66664d749f-5nwvc   1/1     Running   0          8s
-pod/nginx-66664d749f-58gmh   1/1     Running   0          8s
-</pre>
-
 Expected output
 ```
 root@master.tektutor.org:~/kubernetes-oct-2022/Day3/CustomDockerImage# kubectl exec -it utils-7b4dcffbfd-w5cwg sh
