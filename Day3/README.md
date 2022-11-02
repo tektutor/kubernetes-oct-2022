@@ -346,20 +346,12 @@ Checking the label applied on deployment, resplicaset and pods
 root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl get deploy --show-labels
 NAME    READY   UP-TO-DATE   AVAILABLE   AGE     LABELS
 nginx   3/3     3            3           5m10s   app=nginx,tier=frontend
-root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubect^L get rs --show-labels
-
-Command 'kubect
-               ' not found, did you mean:
-
-  command 'kubectx' from snap kubectx (0.9.4)
-  command 'kubectl' from snap kubectl (1.25.3)
-
-See 'snap info <snapname>' for additional versions.
 
 root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl get rs --show-labels
 NAME               DESIRED   CURRENT   READY   AGE     LABELS
 nginx-7cbfdf6bd9   3         3         3       3m35s   app=nginx,pod-template-hash=7cbfdf6bd9,tier=frontend
 nginx-66664d749f   0         0         0       5m22s   app=nginx,pod-template-hash=66664d749f
+
 root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl get po --show-labels
 NAME                     READY   STATUS    RESTARTS   AGE     LABELS
 dnsutils                 1/1     Running   0          152m    <none>
