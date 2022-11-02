@@ -408,4 +408,6 @@ http://<node-id>:<node-port>
 You might find this interesting
 <pre>
 https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
+https://www.tecmint.com/install-nfs-server-on-ubuntu/
 </pre>
