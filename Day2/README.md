@@ -7,7 +7,7 @@
 - manages containerized applications
   - deploy containerized applications
   - on demand you can scale up/down your application instances
-  - it can monitor the health of your application and repair when they don't respond
+  - it can monitor the health of your application and repair when they don't respond or when the node is down or not reachable
 - rolling updates
   - upgrading your currently deployed applications to latest version without any downtime
   - could also download your application version to lower version in case of instability
