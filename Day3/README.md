@@ -386,3 +386,20 @@ kubectl get svc
 kubectl describe svc/nginx
 kubectl delete -f nginx-lb-svc.yml
 ```
+
+## Deploying multipod application - Wordpress with mysql database
+```
+cd ~/kubernetes-oct-2022
+git pull
+cd Day3/declarative/wordpress
+
+kubectl apply -f mysql.yml
+kubectl apply -f wordpress.yml
+
+kubectl get po,svc
+```
+
+Accessing the wordpress web page from your web browser on the lab machine
+```
+http://<node-id>:<node-port>
+```
