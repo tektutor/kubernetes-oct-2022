@@ -388,6 +388,7 @@ kubectl delete -f nginx-lb-svc.yml
 ```
 
 ## Deploying multipod application - Wordpress with mysql database
+
 ```
 cd ~/kubernetes-oct-2022
 git pull
@@ -403,3 +404,8 @@ Accessing the wordpress web page from your web browser on the lab machine
 ```
 http://<node-id>:<node-port>
 ```
+
+You might find this interesting
+<pre>
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+</pre>
