@@ -17,7 +17,7 @@ https://github.com/kelseyhightower/kubernetes-the-hard-way
 1. Minikube - Good for learning purpose but not production grade
 2. MicroK8s - Lightweight setup,  good for learning and production 
 3. K3S - Lightweight setup, good for learning and production grade
-4. Kubernetes setup using kubeadm
+4. Kubernetes setup using kubeadm - https://medium.com/tektutor/kubernetes-3-node-cluster-setup-50943378be41
 5. Kubespray - Ansible playbook - Production Grade
 
 ## Creating a ClusterIP Internal Service
