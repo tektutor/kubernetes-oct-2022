@@ -295,3 +295,48 @@ pod/dnsutils   1/1     Running   0          145m
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   3h38m
 </pre>
+
+## Updating labels to existing deployment in declarative style
+Edit the nginx-deploy.yml as shown below
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+    tier: frontend
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+        tier: frontend
+    spec:
+      containers:
+      - image: bitnami/nginx:latest
+        name: nginx
+        resources: {}
+status: {}
+```
+
+Expected output
+<pre>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl create -f nginx-deploy.yml --save-config
+deployment.apps/nginx created
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl nginx-deploy.yml 
+error: unknown command "nginx-deploy.yml" for "kubectl"
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# vim nginx-deploy.yml 
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl apply -f nginx-deploy.yml 
+The Deployment "nginx" is invalid: spec.selector: Invalid value: v1.LabelSelector{MatchLabels:map[string]string{"app":"nginx", "tier":"frontend"}, MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# vim nginx-deploy.yml 
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl apply -f nginx-deploy.yml 
+deployment.apps/nginx configured
+</pre>
