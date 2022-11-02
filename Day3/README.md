@@ -12,3 +12,10 @@ https://medium.com/@jegan_50867/kubernetes-3-node-cluster-using-k3s-with-docker-
 <pre>
 https://github.com/kelseyhightower/kubernetes-the-hard-way
 </pre>
+
+## What are the options to install Kubernetes?
+1. Minikube - Good for learning purpose but not production grade
+2. MicroK8s - Lightweight setup,  good for learning and production 
+3. K3S - Lightweight setup, good for learning and production grade
+4. Kubernetes setup using kubeadm
+5. Kubespray - Ansible playbook - Production Grade
