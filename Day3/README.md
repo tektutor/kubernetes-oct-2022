@@ -359,3 +359,30 @@ nginx-7cbfdf6bd9-pdrbr   1/1     Running   0          3m48s   app=nginx,pod-temp
 nginx-7cbfdf6bd9-q49q6   1/1     Running   0          3m43s   app=nginx,pod-template-hash=7cbfdf6bd9,tier=frontend
 nginx-7cbfdf6bd9-6k2m9   1/1     Running   0          3m38s   app=nginx,pod-template-hash=7cbfdf6bd9,tier=frontend
 </pre>
+
+### Creating a ClusterIP internal service for nginx deployment
+```
+kubectl expose deploy/nginx --type=ClusterIP --port=8080 --dry-run=client -o yaml > nginx-clusterip-svc.yml
+kubectl apply -f nginx-clusterip-svc.yml
+kubectl get svc
+kubectl describe svc/nginx
+kubectl delete -f nginx-clusterip-svc.yml
+```
+
+### Creating a NodePort external service for nginx deployment
+```
+kubectl expose deploy/nginx --type=NodePort --port=8080 --dry-run=client -o yaml > nginx-nodeport-svc.yml
+kubectl apply -f nginx-nodeport-svc.yml
+kubectl get svc
+kubectl describe svc/nginx
+kubectl delete -f nginx-nodeport-svc.yml
+```
+
+### Creating a LoadBalancer external service for nginx deployment
+```
+kubectl expose deploy/nginx --type=LoadBalancer --port=8080 --dry-run=client -o yaml > nginx-lb-svc.yml
+kubectl apply -f nginx-lb-svc.yml
+kubectl get svc
+kubectl describe svc/nginx
+kubectl delete -f nginx-lb-svc.yml
+```
