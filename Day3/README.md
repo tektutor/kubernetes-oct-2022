@@ -189,3 +189,48 @@ Accessing the LoadBalancer service
 ```
 curl <load-balancer-ip>:8080
 ```
+
+## Creating application deployment using declarative manifest file
+```
+kubectl create deployment nginx --image=bitnami/nginx:latest --replicas=5 --dry-run=client -o yaml
+```
+
+Expected output
+<pre>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl create deploy nginx --image=bitnami/nginx:latest --replicas=5 --dry-run=client -o yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: bitnami/nginx:latest
+        name: nginx
+        resources: {}
+status: {}
+</pre>
+
+We can redirect the above output to a file as shown below
+```
+kubectl create deploy nginx --image=bitnami/nginx:latest --replicas=5 --dry-run=client -o yaml > nginx-deploy.yml
+```
+Expected output
+<pre>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# <b>kubectl create deploy nginx --image=bitnami/nginx:latest --replicas=5 --dry-run=client -o yaml > nginx-deploy.yml</b>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# <b>ls</b>
+nginx-deploy.yml
+</pre>
