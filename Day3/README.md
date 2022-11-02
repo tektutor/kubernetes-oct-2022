@@ -259,3 +259,22 @@ pod/nginx-66664d749f-srtk5   1/1     Running   0          8s
 pod/nginx-66664d749f-5nwvc   1/1     Running   0          8s
 pod/nginx-66664d749f-58gmh   1/1     Running   0          8s
 </pre>
+
+## Declaratively scaling up/down the deployment
+Edit the nginx-deploy.yml file and update the replicas to whatever number of instances you need. In my case, I updated the replicas to 3 to scale down from 5 instances.
+```
+kubectl apply -f nginx-deploy.yml
+```
+
+Expected output
+<pre>
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl apply -f nginx-deploy.yml 
+Warning: resource deployments/nginx is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+deployment.apps/nginx configured
+root@master.tektutor.org:~/kubernetes-oct-2022/Day3/declarative# kubectl get po
+NAME                     READY   STATUS    RESTARTS   AGE
+dnsutils                 1/1     Running   0          141m
+nginx-66664d749f-dpwd6   1/1     Running   0          6m5s
+nginx-66664d749f-8f5rd   1/1     Running   0          6m5s
+nginx-66664d749f-58gmh   1/1     Running   0          6m5s
+</pre>
