@@ -12,41 +12,26 @@ https://medium.com/@jegan_50867/kubernetes-lightweight-developer-setup-using-ran
 
 
 ## Monitoring Performance using Prometheus and Grafana
-In order to install prometheus and grafana into K8 cluster, you may run the below single manifest file
-
 ```
-kubectl apply 
-   -f https://raw.githubusercontent.com/giantswarm/prometheus/master/manifests-all.yaml
-```
+cd ~/kubernetes-oct-2022
+git pull
+cd Day4/prometheus-grafana
+kubectl apply -f prometheus-grafana.yml
 
-### Prometheus Dashboard
-Check the node port services exposed for Prometheus
-kubectl get svc
-
-From Browser (For DIND K8 Cluster)
-<pre>
-http://10.192.0.2:30368
-</pre>
-
-## Grafana Dashboard
-Check the node port services
-```
+kubectl get all -n monitoring
 kubectl get svc
 ```
 
-From Browser (For DIND K8 Cluster)
-</pre>
-http://10.192.0.2:<node-port-of-grafana-service>
-</pre>
+Accessing Prometheus Dashboard
+```
+http://<minikube-node-ip>:<promotheus-nodeport-service-port>
+http://192.169.49.2:30185
+```
+In the above url, you need replace 30185 with your prometheus service node-port.
 
-For example:-
-<pre>
-	http://10.192.0.2:32561
-	
-	Default username - admin
-
-	Default password - admin
-</pre>
-
-For deleting all prometheus and grafana related components from K8
-kubectl delete namespace monitoring
+Accessing Grafana Dashbaord
+```
+http://<minikube-node-ip>:<grafana-nodeport-service-port>
+http://192.169.49.2:30500
+```
+In the above url, you need replace 30500 with your grafana service node-port.
