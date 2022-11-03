@@ -35,3 +35,13 @@ http://<minikube-node-ip>:<grafana-nodeport-service-port>
 http://192.169.49.2:30500
 ```
 In the above url, you need replace 30500 with your grafana service node-port.
+
+## Kubernetes Network Model
+
+Kubernetes Network addons
+1. Flannel - Overlay ( Backends - VXLAN, UDP, etc., )
+2.   - Doesn' support Network Policy
+3. Calico - BGP 
+4.   - Network Policy
+5. Weave - Network Mesh
+6.   - Network Policy
