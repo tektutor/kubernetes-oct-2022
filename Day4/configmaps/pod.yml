@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: busybox 
+    command: ["/bin/sh", "-c", "env" ]
+    env:
+    - name: JAVA_HOME 
+      valueFrom:
+        configMapKeyRef:
+          name: my-tools-configurations
+          key: java_home 
+    - name: MAVEN_HOME
+      valueFrom:
+        configMapKeyRef:
+          name: my-tools-configurations
+          key: maven_home 
+  restartPolicy: Never
+
+
+

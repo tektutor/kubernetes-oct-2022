@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-tools-configurations
+data:
+  java_home: /usr/lib/java
+  maven_home: /usr/share/maven
